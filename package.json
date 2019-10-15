@@ -1,0 +1,43 @@
+{
+  "name": "fast_agg",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/runtime": "^7.6.3",
+    "papaparse": "^5.1.0",
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1",
+    "react-vega": "^7.0.1",
+    "react-vega-lite": "^6.1.0",
+    "react-vis": "^1.11.7",
+    "vega": "^5.7.2",
+    "vega-lib": "^4.4.0",
+    "vega-lite": "^4.0.0-beta.9",
+    "vega-themes": "^2.5.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "node-sass": "^4.12.0",
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-static-files-copy": "^2.2.1",
+    "parcel-plugin-wasm.rs": "^1.2.14"
+  },
+  "browserslist": [
+    ">0.25%",
+    "ie 11",
+    "not op_mini all"
+  ],
+  "scripts": {
+    "start": "parcel index.html "
+  },
+  "staticFiles": {
+    "staticPath": "public"
+  }
+}
