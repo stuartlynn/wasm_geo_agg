@@ -146,15 +146,31 @@ impl PolygonDataset {
         return self.ids[index];
     }
 
-    pub fn export_with_properties(&self) -> String {
+    pub fn export_with_properties(&self, properties: JsValue) -> String {
         let mut features: Vec<Feature> = Vec::new();
+
+        let externProperties: HashMap<String, f32> =
+            match serde_wasm_bindgen::from_value(properties) {
+                Ok(val) => val,
+                Err(err) => {
+                    console::log_2(&"Issue reading properties hash map".into(), &err.into());
+                    HashMap::new()
+                }
+            };
 
         for index in 0..self.objects.len() {
             match &self.objects[index] {
                 Geometry::MultiPolygon(poly) => {
                     let geom_json = geojson::Geometry::new(geojson::Value::from(poly));
                     let mut oldProperties = self.properties[index].clone();
-                    oldProperties.insert(String::from("test"), serde_json::to_value(30.0).unwrap());
+
+                    let value: f32 = match externProperties.get(&index.to_string()) {
+                        Some(val) => *val,
+                        None => 0.0,
+                    };
+
+                    oldProperties
+                        .insert(String::from("count"), serde_json::to_value(value).unwrap());
                     let feature = Feature {
                         bbox: None,
                         geometry: Some(geom_json),

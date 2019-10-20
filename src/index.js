@@ -39,7 +39,7 @@ function App(props) {
   };
 
   const exportGeoJSON = () => {
-    const geojson = polyDataset.export_with_properties();
+    const geojson = polyDataset.export_with_properties(blockAggs);
     const blob = new Blob([geojson], { type: "text/plain;charset=utf-8" })
     saveAs(blob, "aggregated_result.geojson");
   }
