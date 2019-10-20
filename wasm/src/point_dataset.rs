@@ -140,13 +140,6 @@ impl PointDataset {
     }
   }
 
-  pub fn agg_to_blocks(&self) -> f32 {
-    let unique_blocks: HashSet<u32> = self.ids.clone().drain(..).collect();
-    let no_blocks = unique_blocks.len() as u32;
-    console::log_2(&"No unique blocks ".into(), &no_blocks.into());
-    return 2.0;
-  }
-
   pub fn count_in(&self, poly: &Geometry<f32>) -> u32 {
     let bounds = match poly {
       Geometry::Polygon(p) => Ok(p.bounding_rect().unwrap()),

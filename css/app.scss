@@ -141,3 +141,14 @@ button:hover{
   width:0%;
 }
 
+.action-buttons{
+  display:flex;
+  flex-direction: column;
+  height:350px;
+  justify-content: space-between;
+}
+
+.action-buttons button{
+  width:80%;
+}
+

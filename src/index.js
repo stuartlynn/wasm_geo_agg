@@ -5,6 +5,8 @@ import FileLoader from './components/FileLoader'
 import GeoJsonLoader from './components/GeoJsonLoader'
 import PointMap from './components/PointMap'
 import PolygonMap from './components/PolygonMap'
+import { saveAs } from 'file-saver';
+
 
 import {
   add,
@@ -20,6 +22,8 @@ import { count_csv_rows } from './utils';
 
 const startBounds = [-74.25909, 40.477399, -73.700181, 40.916178];
 
+
+
 function App(props) {
   const [dataset, setDataset] = useState(null);
   const [polyDataset, setPolyDataset] = useState(null);
@@ -33,6 +37,12 @@ function App(props) {
   const reset = () => {
     setBounds(startBounds);
   };
+
+  const exportGeoJSON = () => {
+    const geojson = polyDataset.export_with_properties(blockAggs);
+    const blob = new Blob([geojson], { type: "text/plain;charset=utf-8" })
+    saveAs(blob, "aggregated_result.geojson");
+  }
 
   const boundsChanged = (bounds) => {
     setBounds(bounds)
@@ -79,7 +89,10 @@ function App(props) {
 
       <div className={'aggregate'}>
         {(dataset && polyDataset) &&
-          <button onClick={onCalcIntersection}>Aggregate</button>
+          <div className={'action-buttons'}>
+            <button onClick={onCalcIntersection}>Aggregate</button>
+            <button onClick={exportGeoJSON}>Save GeoJSON</button>
+          </div>
         }
       </div>
 
