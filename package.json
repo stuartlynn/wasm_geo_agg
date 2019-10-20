@@ -37,11 +37,11 @@
     "ie 11",
     "not op_mini all"
   ],
-  "homepage":"https://wasm_geo_agg.github.io",
+  "homepage":"https://stuartlynn.github.io/wasm_geo_agg",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",
-    "deploy" : "parcel build index.html --public-url https://wasm_geo_agg.github.io && gh-pages -d dist",
+    "deploy" : "parcel build index.html --public-url https://stuartlynn.github.io/wasm_geo_agg && gh-pages -d dist",
     "gh-pages" : " gh-pages -d dist"
 
   },
