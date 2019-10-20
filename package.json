@@ -5,9 +5,11 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.6.3",
+    "@material-ui/core": "^4.5.1",
     "papaparse": "^5.1.0",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
+    "react-dropdown": "^1.6.4",
     "react-vega": "^7.0.1",
     "react-vega-lite": "^6.1.0",
     "react-vis": "^1.11.7",
@@ -24,6 +26,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "gh-pages": "^2.1.1",
     "node-sass": "^4.12.0",
     "parcel-bundler": "^1.12.3",
     "parcel-plugin-static-files-copy": "^2.2.1",
@@ -34,8 +37,13 @@
     "ie 11",
     "not op_mini all"
   ],
+  "homepage":"https://wasm_geo_agg.github.io",
   "scripts": {
-    "start": "parcel index.html "
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "deploy" : "parcel build index.html --public-url https://wasm_geo_agg.github.io && gh-pages -d dist",
+    "gh-pages" : " gh-pages -d dist"
+
   },
   "staticFiles": {
     "staticPath": "public"
