@@ -10,7 +10,7 @@ use geo::algorithm::area::Area;
 use geo::algorithm::bounding_rect::BoundingRect;
 use std::collections::HashMap;
 
-use geojson::{GeoJson, Value};
+use geojson::{Feature, FeatureCollection, GeoJson, Value};
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
 
@@ -144,6 +144,37 @@ impl PolygonDataset {
 
     pub fn geom_id(&self, index: usize) -> u32 {
         return self.ids[index];
+    }
+
+    pub fn export_with_properties(&self) -> String {
+        let mut features: Vec<Feature> = Vec::new();
+
+        for index in 0..self.objects.len() {
+            match &self.objects[index] {
+                Geometry::MultiPolygon(poly) => {
+                    let geom_json = geojson::Geometry::new(geojson::Value::from(poly));
+                    let mut oldProperties = self.properties[index].clone();
+                    oldProperties.insert(String::from("test"), serde_json::to_value(30.0).unwrap());
+                    let feature = Feature {
+                        bbox: None,
+                        geometry: Some(geom_json),
+                        id: None,
+                        properties: Some(oldProperties),
+                        foreign_members: None,
+                    };
+
+                    features.push(feature);
+                }
+                _ => console::log_1(&"For some reasion we got a non polygon".into()),
+            }
+        }
+        let fc = FeatureCollection {
+            bbox: None,
+            features: features,
+            foreign_members: None,
+        };
+
+        GeoJson::from(fc).to_string()
     }
 
     pub fn geom_area(&self, index: usize) -> f32 {
