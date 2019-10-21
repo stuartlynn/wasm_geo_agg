@@ -95092,7 +95092,7 @@ function readInChunks(file, progress_callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PolygonDataset = exports.PointDataset = exports.__wbindgen_memory = exports.__wbindgen_throw = exports.__wbindgen_debug_string = exports.__wbindgen_boolean_get = exports.__wbindgen_string_get = exports.__wbindgen_number_get = exports.__wbg_get_90b556116be91639 = exports.__wbg_byteLength_66504bf17d7a1c5a = exports.__wbg_instanceof_Uint8Array_7d7ec1a262a2de7d = exports.__wbg_set_662b22f1b4008ab7 = exports.__wbg_new_8f74bcd603e235c0 = exports.__wbg_length_deb426bb35063224 = exports.__wbg_buffer_cdcb54e9871fd20a = exports.__wbg_global_c6db5ff079ba98ed = exports.__wbg_window_b19864ecbde8d123 = exports.__wbg_self_78670bf6333531d2 = exports.__wbg_globalThis_b8da724777cacbb6 = exports.__wbg_entries_e656e3abaca44964 = exports.__wbg_newnoargs_8effd2c0e33a9e83 = exports.__wbg_new_4d5ae649984849e5 = exports.__wbg_values_f49c6f44904f94f2 = exports.__wbg_instanceof_ArrayBuffer_d086c184cea3b074 = exports.__wbg_call_11f5c018dea16986 = exports.__wbg_get_a7395f826d52f42a = exports.__wbg_iterator_73ac8b31a67356c7 = exports.__wbg_value_fdc45b6bdf81b305 = exports.__wbg_done_8173698bf9d912fd = exports.__wbg_next_9128d97f3cbbeb47 = exports.__wbg_next_3b99e11da1dc3f62 = exports.__wbindgen_is_function = exports.__wbindgen_object_clone_ref = exports.__wbindgen_is_undefined = exports.__wbindgen_is_null = exports.__wbindgen_is_object = exports.__widl_f_log_5_ = exports.__widl_f_log_3_ = exports.__widl_f_log_2_ = exports.__widl_f_log_1_ = exports.__widl_f_document_Window = exports.__widl_f_new_with_u8_clamped_array_and_sh_ImageData = exports.__widl_f_height_HTMLCanvasElement = exports.__widl_f_width_HTMLCanvasElement = exports.__widl_f_get_context_HTMLCanvasElement = exports.__widl_instanceof_HTMLCanvasElement = exports.__widl_f_get_element_by_id_Document = exports.__widl_f_fill_rect_CanvasRenderingContext2D = exports.__widl_f_clear_rect_CanvasRenderingContext2D = exports.__widl_f_move_to_CanvasRenderingContext2D = exports.__widl_f_line_to_CanvasRenderingContext2D = exports.__widl_f_put_image_data_CanvasRenderingContext2D = exports.__widl_f_set_fill_style_CanvasRenderingContext2D = exports.__widl_f_set_stroke_style_CanvasRenderingContext2D = exports.__widl_f_stroke_CanvasRenderingContext2D = exports.__widl_f_fill_CanvasRenderingContext2D = exports.__widl_f_begin_path_CanvasRenderingContext2D = exports.__widl_instanceof_CanvasRenderingContext2D = exports.__widl_instanceof_Window = exports.__wbindgen_json_parse = exports.__wbindgen_object_drop_ref = exports.__wbindgen_string_new = exports.__wbindgen_number_new = exports.render_points_to_canvas = exports.count_in_poly = exports.load_geojson = exports.default = void 0;
+exports.PolygonDataset = exports.PointDataset = exports.__wbindgen_memory = exports.__wbindgen_throw = exports.__wbindgen_debug_string = exports.__wbindgen_boolean_get = exports.__wbindgen_string_get = exports.__wbindgen_number_get = exports.__wbg_get_90b556116be91639 = exports.__wbg_byteLength_66504bf17d7a1c5a = exports.__wbg_instanceof_Uint8Array_7d7ec1a262a2de7d = exports.__wbg_set_662b22f1b4008ab7 = exports.__wbg_new_8f74bcd603e235c0 = exports.__wbg_length_deb426bb35063224 = exports.__wbg_buffer_cdcb54e9871fd20a = exports.__wbg_global_c6db5ff079ba98ed = exports.__wbg_window_b19864ecbde8d123 = exports.__wbg_self_78670bf6333531d2 = exports.__wbg_globalThis_b8da724777cacbb6 = exports.__wbg_entries_e656e3abaca44964 = exports.__wbg_newnoargs_8effd2c0e33a9e83 = exports.__wbg_new_4d5ae649984849e5 = exports.__wbg_values_f49c6f44904f94f2 = exports.__wbg_instanceof_ArrayBuffer_d086c184cea3b074 = exports.__wbg_call_11f5c018dea16986 = exports.__wbg_get_a7395f826d52f42a = exports.__wbg_iterator_73ac8b31a67356c7 = exports.__wbg_value_fdc45b6bdf81b305 = exports.__wbg_done_8173698bf9d912fd = exports.__wbg_next_9128d97f3cbbeb47 = exports.__wbg_next_3b99e11da1dc3f62 = exports.__wbindgen_is_function = exports.__wbindgen_object_clone_ref = exports.__wbindgen_is_undefined = exports.__wbindgen_is_null = exports.__wbindgen_is_object = exports.__widl_f_log_5_ = exports.__widl_f_log_3_ = exports.__widl_f_log_2_ = exports.__widl_f_log_1_ = exports.__widl_f_document_Window = exports.__widl_f_new_with_u8_clamped_array_and_sh_ImageData = exports.__widl_f_height_HTMLCanvasElement = exports.__widl_f_width_HTMLCanvasElement = exports.__widl_f_get_context_HTMLCanvasElement = exports.__widl_instanceof_HTMLCanvasElement = exports.__widl_f_get_element_by_id_Document = exports.__widl_f_fill_rect_CanvasRenderingContext2D = exports.__widl_f_clear_rect_CanvasRenderingContext2D = exports.__widl_f_move_to_CanvasRenderingContext2D = exports.__widl_f_line_to_CanvasRenderingContext2D = exports.__widl_f_put_image_data_CanvasRenderingContext2D = exports.__widl_f_set_fill_style_CanvasRenderingContext2D = exports.__widl_f_set_stroke_style_CanvasRenderingContext2D = exports.__widl_f_stroke_CanvasRenderingContext2D = exports.__widl_f_fill_CanvasRenderingContext2D = exports.__widl_f_begin_path_CanvasRenderingContext2D = exports.__widl_instanceof_CanvasRenderingContext2D = exports.__widl_instanceof_Window = exports.__wbindgen_json_parse = exports.__wbindgen_number_new = exports.__wbindgen_object_drop_ref = exports.__wbindgen_string_new = exports.render_points_to_canvas = exports.count_in_poly = exports.load_geojson = exports.default = void 0;
 
 var _wasm_bg = _interopRequireDefault(require("./pkg/wasm_bg.wasm"));
 
@@ -95106,12 +95106,12 @@ var count_in_poly = _wasm_bg.default.count_in_poly;
 exports.count_in_poly = count_in_poly;
 var render_points_to_canvas = _wasm_bg.default.render_points_to_canvas;
 exports.render_points_to_canvas = render_points_to_canvas;
-var __wbindgen_number_new = _wasm_bg.default.__wbindgen_number_new;
-exports.__wbindgen_number_new = __wbindgen_number_new;
 var __wbindgen_string_new = _wasm_bg.default.__wbindgen_string_new;
 exports.__wbindgen_string_new = __wbindgen_string_new;
 var __wbindgen_object_drop_ref = _wasm_bg.default.__wbindgen_object_drop_ref;
 exports.__wbindgen_object_drop_ref = __wbindgen_object_drop_ref;
+var __wbindgen_number_new = _wasm_bg.default.__wbindgen_number_new;
+exports.__wbindgen_number_new = __wbindgen_number_new;
 var __wbindgen_json_parse = _wasm_bg.default.__wbindgen_json_parse;
 exports.__wbindgen_json_parse = __wbindgen_json_parse;
 var __widl_instanceof_Window = _wasm_bg.default.__widl_instanceof_Window;
@@ -95399,7 +95399,7 @@ function FileLoader(_ref) {
     LoadHeader(fileToRead);
   };
 
-  return _react.default.createElement("div", null, _react.default.createElement("h1", null, "File Loader"), phase == "selectFile" && _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("input", {
+  return _react.default.createElement("div", null, _react.default.createElement("h1", null, "Point Data"), phase == "selectFile" && _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("input", {
     type: "file",
     name: "csvfile",
     id: "csvfile",
@@ -95410,7 +95410,7 @@ function FileLoader(_ref) {
     className: 'inputfile'
   }), _react.default.createElement("label", {
     for: "csvfile"
-  }, "Select CSV file")), phase == "selectColumns" && _react.default.createElement("div", null, _react.default.createElement("p", null, file.name), header && _react.default.createElement("div", null, _react.default.createElement("h2", null, "Geo Columns"), _react.default.createElement("div", {
+  }, "Select CSV file")), phase == "selectColumns" && _react.default.createElement("div", null, _react.default.createElement("p", null, file.name), header && _react.default.createElement("div", null, _react.default.createElement("h2", null, "Select the latitude and logitude columns"), _react.default.createElement("div", {
     style: {
       display: 'flex',
       flexDirection: 'row',
@@ -95462,7 +95462,7 @@ function FileLoader(_ref) {
       key: h,
       value: h
     }, h);
-  })))), _react.default.createElement("div", null, _react.default.createElement("h2", null, "Columns To Aggregate"), _react.default.createElement("ul", {
+  })))), _react.default.createElement("div", null, _react.default.createElement("h2", null, "Select columns you wish to aggregate"), _react.default.createElement("ul", {
     className: 'columns-to-aggregate'
   }, header.map(function (h) {
     return _react.default.createElement("li", null, h, " ", _react.default.createElement("input", {
@@ -95566,7 +95566,7 @@ function GeoJsonLoader(_ref) {
     };
   }();
 
-  return _react.default.createElement("div", null, _react.default.createElement("h1", null, "Geojson loader"), loading ? _react.default.createElement("div", {
+  return _react.default.createElement("div", null, _react.default.createElement("h1", null, "Polygon Data"), loading ? _react.default.createElement("div", {
     className: 'point-loading'
   }, _react.default.createElement("p", null, file.name, ": ", (file.size / 1024 / 1024).toPrecision(4), " Mb"), _react.default.createElement(_ProgressBar.default, {
     style: {
@@ -95752,23 +95752,19 @@ function App(props) {
       columnsToAggregate = _useState10[0],
       setColumnsToAggregate = _useState10[1];
 
-  var _useState11 = (0, _react.useState)(true),
+  var _useState11 = (0, _react.useState)(startBounds),
       _useState12 = (0, _slicedToArray2.default)(_useState11, 2),
-      log = _useState12[0],
-      setLog = _useState12[1];
-
-  var _useState13 = (0, _react.useState)(1),
-      _useState14 = (0, _slicedToArray2.default)(_useState13, 2),
-      pixDensity = _useState14[0],
-      setPixDensity = _useState14[1];
-
-  var _useState15 = (0, _react.useState)(startBounds),
-      _useState16 = (0, _slicedToArray2.default)(_useState15, 2),
-      bounds = _useState16[0],
-      setBounds = _useState16[1];
+      bounds = _useState12[0],
+      setBounds = _useState12[1];
 
   var reset = function reset() {
     setBounds(startBounds);
+  };
+
+  var pointDatasetLoaded = function pointDatasetLoaded(dataset, columns) {
+    setDataset(dataset);
+    setColumnsToAggregate(columns);
+    setBounds([dataset.lng_min, dataset.lat_min, dataset.lng_max, dataset.lat_max]);
   };
 
   var exportGeoJSON = function exportGeoJSON() {
@@ -95803,8 +95799,7 @@ function App(props) {
     bounds: bounds
   })) : _react.default.createElement(_FileLoader.default, {
     onLoaded: function onLoaded(dataset, columns) {
-      setDataset(dataset);
-      setColumnsToAggregate(columns);
+      pointDatasetLoaded(dataset, columns);
     }
   })), _react.default.createElement("div", {
     className: 'polygons'
@@ -95819,13 +95814,13 @@ function App(props) {
     }
   })), _react.default.createElement("div", {
     className: 'aggregate'
-  }, dataset && polyDataset && _react.default.createElement("div", {
+  }, dataset && polyDataset ? _react.default.createElement("div", {
     className: 'action-buttons'
   }, _react.default.createElement("button", {
     onClick: onCalcIntersection
   }, "Aggregate"), _react.default.createElement("button", {
     onClick: exportGeoJSON
-  }, "Save GeoJSON"))), _react.default.createElement("div", {
+  }, "Save GeoJSON")) : _react.default.createElement("p", null, "Select a csv containing latitude and logitude point data, and a geojson containing polygon data to aggregate to.")), _react.default.createElement("div", {
     className: 'footer'
   }, _react.default.createElement("p", null)));
 }
@@ -95861,7 +95856,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43281" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35019" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -96422,6 +96417,58 @@ class  PointDataset {
         wasm.__wbg_set_pointdataset_no_rows(this.ptr, arg0);
     }
     /**
+    * @returns {number}
+    */
+    get lat_max() {
+        const ret = wasm.__wbg_get_pointdataset_lat_max(this.ptr);
+        return ret;
+    }
+    /**
+    * @param {number} arg0
+    */
+    set lat_max(arg0) {
+        wasm.__wbg_set_pointdataset_lat_max(this.ptr, arg0);
+    }
+    /**
+    * @returns {number}
+    */
+    get lat_min() {
+        const ret = wasm.__wbg_get_pointdataset_lat_min(this.ptr);
+        return ret;
+    }
+    /**
+    * @param {number} arg0
+    */
+    set lat_min(arg0) {
+        wasm.__wbg_set_pointdataset_lat_min(this.ptr, arg0);
+    }
+    /**
+    * @returns {number}
+    */
+    get lng_max() {
+        const ret = wasm.__wbg_get_pointdataset_lng_max(this.ptr);
+        return ret;
+    }
+    /**
+    * @param {number} arg0
+    */
+    set lng_max(arg0) {
+        wasm.__wbg_set_pointdataset_lng_max(this.ptr, arg0);
+    }
+    /**
+    * @returns {number}
+    */
+    get lng_min() {
+        const ret = wasm.__wbg_get_pointdataset_lng_min(this.ptr);
+        return ret;
+    }
+    /**
+    * @param {number} arg0
+    */
+    set lng_min(arg0) {
+        wasm.__wbg_set_pointdataset_lng_min(this.ptr, arg0);
+    }
+    /**
     * @returns {PointDataset}
     */
     static new_empty() {
@@ -96491,18 +96538,6 @@ class  PolygonDataset {
         return PolygonDataset.__wrap(ret);
     }
     /**
-    * @param {any} counts
-    * @returns {string}
-    */
-    to_geojson_with_counts(counts) {
-        const retptr = 8;
-        const ret = wasm.polygondataset_to_geojson_with_counts(retptr, this.ptr, addHeapObject(counts));
-        const memi32 = getInt32Memory();
-        const v0 = getStringFromWasm(memi32[retptr / 4 + 0], memi32[retptr / 4 + 1]).slice();
-        wasm.__wbindgen_free(memi32[retptr / 4 + 0], memi32[retptr / 4 + 1] * 1);
-        return v0;
-    }
-    /**
     * @param {string} canvasID
     * @param {any} counts
     * @param {number} lng_start
@@ -96543,11 +96578,6 @@ class  PolygonDataset {
     }
 }
 
-__exports.__wbindgen_number_new = function(arg0) {
-    const ret = arg0;
-    return addHeapObject(ret);
-};
-
 __exports.__wbindgen_string_new = function(arg0, arg1) {
     const ret = getStringFromWasm(arg0, arg1);
     return addHeapObject(ret);
@@ -96555,6 +96585,11 @@ __exports.__wbindgen_string_new = function(arg0, arg1) {
 
 __exports.__wbindgen_object_drop_ref = function(arg0) {
     takeObject(arg0);
+};
+
+__exports.__wbindgen_number_new = function(arg0) {
+    const ret = arg0;
+    return addHeapObject(ret);
 };
 
 __exports.__wbindgen_json_parse = function(arg0, arg1) {
