@@ -21,6 +21,16 @@ export default function FileLoader({ type, onLoaded }) {
     const [latitudeCol, setLatitudeCol] = useState('')
     const [longitudeCol, setLongitudeCol] = useState('')
     const [phase, setPhase] = useState('selectFile')
+    const [columnsToAggregate, setColumnsToAggregate] = useState([])
+
+    const updateColumnsList = (column, checked) => {
+        if (checked && !columnsToAggregate.includes(column)) {
+            setColumnsToAggregate([...columnsToAggregate, column]);
+        }
+        else if (!checked && columnsToAggregate.includes(column)) {
+            setColumnsToAggregate(columnsToAggregate.filter(col => col !== column))
+        }
+    }
 
     const LoadHeader = (file) => {
         const reader = new FileReader();
@@ -73,10 +83,10 @@ export default function FileLoader({ type, onLoaded }) {
 
     return (
         <div>
-            <h1>File Loader</h1>
+            <h1>Point Data</h1>
             {phase == "selectFile" &&
                 <React.Fragment>
-                    <input type='file' name='csvfile' id='csvfile' onChange={(e) => gotFiles(e.target.files)} className={'inputfile'} />
+                    <input type='file' name='csvfile' id='csvfile' accept={".csv"} onChange={(e) => gotFiles(e.target.files)} className={'inputfile'} />
                     <label for='csvfile'>Select CSV file</label>
                 </React.Fragment>
             }
@@ -85,7 +95,7 @@ export default function FileLoader({ type, onLoaded }) {
                     <p>{file.name}</p>
                     {header &&
                         <div>
-                            <h2>Geo Columns</h2>
+                            <h2>Select the latitude and logitude columns</h2>
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
                                 <FormControl style={{ minWidth: '300px', color: 'white' }}>
                                     <InputLabel style={{ color: 'white' }} htmlFor="latitude-simple">Latitude Column</InputLabel>
@@ -113,9 +123,9 @@ export default function FileLoader({ type, onLoaded }) {
                                 </FormControl>
                             </div>
                             <div>
-                                <h2>Columns To Aggregate</h2>
+                                <h2>Select columns you wish to aggregate</h2>
                                 <ul className={'columns-to-aggregate'}>
-                                    {header.map((h) => <li>{h} <input type='checkbox' /></li>)}
+                                    {header.map((h) => <li>{h} <input type='checkbox' onChange={(e => updateColumnsList(h, e.target.checked))} value={columnsToAggregate.includes(h)} /></li>)}
                                 </ul>
                             </div>
 

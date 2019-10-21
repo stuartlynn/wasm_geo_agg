@@ -23,15 +23,14 @@ import { count_csv_rows } from './utils';
 const startBounds = [-74.25909, 40.477399, -73.700181, 40.916178];
 
 
-
 function App(props) {
   const [dataset, setDataset] = useState(null);
   const [polyDataset, setPolyDataset] = useState(null);
   const [blockAggs, setBlockAggs] = useState({});
   const [aggTime, setAggTime] = useState(0);
+  const [columnsToAggregate, setColumnsToAggregate] = useState([])
 
-  const [log, setLog] = useState(true);
-  const [pixDensity, setPixDensity] = useState(1);
+
   const [bounds, setBounds] = useState(startBounds);
 
   const reset = () => {
@@ -94,11 +93,14 @@ function App(props) {
       </div>
 
       <div className={'aggregate'}>
-        {(dataset && polyDataset) &&
+
+        {(dataset && polyDataset) ?
           <div className={'action-buttons'}>
             <button onClick={onCalcIntersection}>Aggregate</button>
             <button onClick={exportGeoJSON}>Save GeoJSON</button>
           </div>
+          :
+          <p>Select a csv containing latitude and logitude point data, and a geojson containing polygon data to aggregate to.</p>
         }
       </div>
 
