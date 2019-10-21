@@ -44,11 +44,6 @@ impl PolygonDataset {
         }
     }
 
-    pub fn to_geojson_with_counts(&self, counts: JsValue) -> String {
-        // for index in 0..self.ob
-        "".to_string()
-    }
-
     pub fn display_with_counts(
         &self,
         canvasID: String,
@@ -245,8 +240,6 @@ impl PolygonDataset {
                 let mut count = 0;
                 for feature in &ctn.features {
                     let vals = feature.properties.clone().unwrap();
-                    // let id = vals.get("bctcb2010").unwrap();
-                    // ids.push(id.to_string());
                     properties.push(vals);
                     ids.push(count);
                     count = count + 1;
@@ -255,7 +248,8 @@ impl PolygonDataset {
                         match &geom.value {
                             Value::Polygon(poly) => {
                                 let p: Polygon<f32> = geom.value.clone().try_into().unwrap();
-                                geometries.push(p.into());
+                                let mp: MultiPolygon<f32> = MultiPolygon(vec![p]);
+                                geometries.push(mp.into());
                                 no_polygons = no_polygons + 1;
                             }
                             Value::MultiPolygon(_) => {
