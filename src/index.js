@@ -38,6 +38,12 @@ function App(props) {
     setBounds(startBounds);
   };
 
+  const pointDatasetLoaded = (dataset, columns) => {
+    setDataset(dataset);
+    setColumnsToAggregate(columns);
+    setBounds([dataset.lng_min, dataset.lat_min, dataset.lng_max, dataset.lat_max]);
+  }
+
   const exportGeoJSON = () => {
     const geojson = polyDataset.export_with_properties(blockAggs);
     const blob = new Blob([geojson], { type: "text/plain;charset=utf-8" })
@@ -73,7 +79,7 @@ function App(props) {
             <PointMap onZoomIn={boundsChanged} dataset={dataset} bounds={bounds} />
           </div>
           :
-          <FileLoader onLoaded={(dataset) => setDataset(dataset)} />
+          <FileLoader onLoaded={(dataset, columns) => { pointDatasetLoaded(dataset, columns) }} />
         }
       </div>
 
