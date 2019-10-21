@@ -17,6 +17,10 @@ pub struct PointDataset {
   pub no_rows: u32,
   coords: Vec<Point<f32>>,
   ids: Vec<u32>,
+  pub lat_max: f32,
+  pub lat_min: f32,
+  pub lng_max: f32,
+  pub lng_min: f32,
 }
 
 // ![derive(Copy,Clone,PartialEq,Debug)]
@@ -47,6 +51,10 @@ impl PointDataset {
       no_rows: 0,
       coords: Vec::new(),
       ids: Vec::new(),
+      lng_min: 180.0,
+      lat_min: 90.0,
+      lng_max: -180.0,
+      lat_max: -90.0,
     }
   }
 
@@ -66,7 +74,7 @@ impl PointDataset {
             Ok(val) => val,
             Err(e) => {
               console::log_2(&"failed to parse lat col".into(), &e.to_string().into());
-              0.0
+              -9999.0
             }
           };
 
@@ -74,9 +82,23 @@ impl PointDataset {
             Ok(val) => val,
             Err(e) => {
               console::log_1(&"failed to parse lng col".into());
-              0.0
+              -99999.0
             }
           };
+          if (lng > -180.0 && lat > -90.0) {
+            if (lng < self.lng_min) {
+              self.lng_min = lng;
+            };
+            if (lng > self.lng_max) {
+              self.lng_max = lng;
+            };
+            if (lat < self.lat_min) {
+              self.lat_min = lat;
+            };
+            if (lat > self.lat_max) {
+              self.lat_max = lat;
+            };
+          }
           self.coords.push(Point::new(lng, lat));
           self.ids.push(self.no_rows);
           self.no_rows = self.no_rows + 1
@@ -137,6 +159,10 @@ impl PointDataset {
       no_rows: no_rows,
       coords: coords,
       ids: ids,
+      lng_min: -180.0,
+      lat_min: -90.0,
+      lng_max: 180.0,
+      lat_max: 90.0,
     }
   }
 
