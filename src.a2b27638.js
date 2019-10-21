@@ -75957,7 +75957,43 @@ function _asyncToGenerator(fn) {
 }
 
 module.exports = _asyncToGenerator;
-},{}],"node_modules/@babel/runtime/helpers/esm/extends.js":[function(require,module,exports) {
+},{}],"node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":[function(require,module,exports) {
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+
+module.exports = _arrayWithoutHoles;
+},{}],"node_modules/@babel/runtime/helpers/iterableToArray.js":[function(require,module,exports) {
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+},{}],"node_modules/@babel/runtime/helpers/nonIterableSpread.js":[function(require,module,exports) {
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+module.exports = _nonIterableSpread;
+},{}],"node_modules/@babel/runtime/helpers/toConsumableArray.js":[function(require,module,exports) {
+var arrayWithoutHoles = require("./arrayWithoutHoles");
+
+var iterableToArray = require("./iterableToArray");
+
+var nonIterableSpread = require("./nonIterableSpread");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
+},{"./arrayWithoutHoles":"node_modules/@babel/runtime/helpers/arrayWithoutHoles.js","./iterableToArray":"node_modules/@babel/runtime/helpers/iterableToArray.js","./nonIterableSpread":"node_modules/@babel/runtime/helpers/nonIterableSpread.js"}],"node_modules/@babel/runtime/helpers/esm/extends.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -95208,6 +95244,8 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
+
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
 var _react = _interopRequireWildcard(require("react"));
@@ -95275,6 +95313,21 @@ function FileLoader(_ref) {
       _useState16 = (0, _slicedToArray2.default)(_useState15, 2),
       phase = _useState16[0],
       setPhase = _useState16[1];
+
+  var _useState17 = (0, _react.useState)([]),
+      _useState18 = (0, _slicedToArray2.default)(_useState17, 2),
+      columnsToAggregate = _useState18[0],
+      setColumnsToAggregate = _useState18[1];
+
+  var updateColumnsList = function updateColumnsList(column, checked) {
+    if (checked && !columnsToAggregate.includes(column)) {
+      setColumnsToAggregate([].concat((0, _toConsumableArray2.default)(columnsToAggregate), [column]));
+    } else if (!checked && columnsToAggregate.includes(column)) {
+      setColumnsToAggregate(columnsToAggregate.filter(function (col) {
+        return col !== column;
+      }));
+    }
+  };
 
   var LoadHeader = function LoadHeader(file) {
     var reader = new FileReader();
@@ -95350,6 +95403,7 @@ function FileLoader(_ref) {
     type: "file",
     name: "csvfile",
     id: "csvfile",
+    accept: ".csv",
     onChange: function onChange(e) {
       return gotFiles(e.target.files);
     },
@@ -95412,7 +95466,11 @@ function FileLoader(_ref) {
     className: 'columns-to-aggregate'
   }, header.map(function (h) {
     return _react.default.createElement("li", null, h, " ", _react.default.createElement("input", {
-      type: "checkbox"
+      type: "checkbox",
+      onChange: function onChange(e) {
+        return updateColumnsList(h, e.target.checked);
+      },
+      value: columnsToAggregate.includes(h)
     }));
   }))), _react.default.createElement("div", null, _react.default.createElement("button", {
     onClick: loadFile
@@ -95426,7 +95484,7 @@ function FileLoader(_ref) {
     value: loadPercent
   })), phase == 'parsing' && _react.default.createElement("div", null, _react.default.createElement("h2", null, "Parsing")));
 }
-},{"@babel/runtime/regenerator":"node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"node_modules/@babel/runtime/helpers/asyncToGenerator.js","@babel/runtime/helpers/slicedToArray":"node_modules/@babel/runtime/helpers/slicedToArray.js","react":"node_modules/react/index.js","@material-ui/core/InputLabel":"node_modules/@material-ui/core/esm/InputLabel/index.js","@material-ui/core/MenuItem":"node_modules/@material-ui/core/esm/MenuItem/index.js","@material-ui/core/FormControl":"node_modules/@material-ui/core/esm/FormControl/index.js","@material-ui/core/Select":"node_modules/@material-ui/core/esm/Select/index.js","./ProgressBar":"src/components/ProgressBar.js","../utils":"src/utils.js","/wasm/Cargo.toml":"wasm/Cargo.toml"}],"src/components/GeoJsonLoader.js":[function(require,module,exports) {
+},{"@babel/runtime/regenerator":"node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"node_modules/@babel/runtime/helpers/asyncToGenerator.js","@babel/runtime/helpers/toConsumableArray":"node_modules/@babel/runtime/helpers/toConsumableArray.js","@babel/runtime/helpers/slicedToArray":"node_modules/@babel/runtime/helpers/slicedToArray.js","react":"node_modules/react/index.js","@material-ui/core/InputLabel":"node_modules/@material-ui/core/esm/InputLabel/index.js","@material-ui/core/MenuItem":"node_modules/@material-ui/core/esm/MenuItem/index.js","@material-ui/core/FormControl":"node_modules/@material-ui/core/esm/FormControl/index.js","@material-ui/core/Select":"node_modules/@material-ui/core/esm/Select/index.js","./ProgressBar":"src/components/ProgressBar.js","../utils":"src/utils.js","/wasm/Cargo.toml":"wasm/Cargo.toml"}],"src/components/GeoJsonLoader.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -95517,6 +95575,7 @@ function GeoJsonLoader(_ref) {
     total: 100.0,
     value: progress
   })) : _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("input", {
+    accept: ".geojson",
     type: "file",
     name: "geofile",
     id: "geofile",
@@ -95688,20 +95747,25 @@ function App(props) {
       aggTime = _useState8[0],
       setAggTime = _useState8[1];
 
-  var _useState9 = (0, _react.useState)(true),
+  var _useState9 = (0, _react.useState)([]),
       _useState10 = (0, _slicedToArray2.default)(_useState9, 2),
-      log = _useState10[0],
-      setLog = _useState10[1];
+      columnsToAggregate = _useState10[0],
+      setColumnsToAggregate = _useState10[1];
 
-  var _useState11 = (0, _react.useState)(1),
+  var _useState11 = (0, _react.useState)(true),
       _useState12 = (0, _slicedToArray2.default)(_useState11, 2),
-      pixDensity = _useState12[0],
-      setPixDensity = _useState12[1];
+      log = _useState12[0],
+      setLog = _useState12[1];
 
-  var _useState13 = (0, _react.useState)(startBounds),
+  var _useState13 = (0, _react.useState)(1),
       _useState14 = (0, _slicedToArray2.default)(_useState13, 2),
-      bounds = _useState14[0],
-      setBounds = _useState14[1];
+      pixDensity = _useState14[0],
+      setPixDensity = _useState14[1];
+
+  var _useState15 = (0, _react.useState)(startBounds),
+      _useState16 = (0, _slicedToArray2.default)(_useState15, 2),
+      bounds = _useState16[0],
+      setBounds = _useState16[1];
 
   var reset = function reset() {
     setBounds(startBounds);
@@ -95738,8 +95802,9 @@ function App(props) {
     dataset: dataset,
     bounds: bounds
   })) : _react.default.createElement(_FileLoader.default, {
-    onLoaded: function onLoaded(dataset) {
-      return setDataset(dataset);
+    onLoaded: function onLoaded(dataset, columns) {
+      setDataset(dataset);
+      setColumnsToAggregate(columns);
     }
   })), _react.default.createElement("div", {
     className: 'polygons'
@@ -95796,7 +95861,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46703" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43281" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
