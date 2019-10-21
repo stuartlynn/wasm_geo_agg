@@ -23,7 +23,7 @@ export default function GeoJsonLoader({ onLoaded }) {
 
     return (
         <div>
-            <h1>Geojson loader</h1>
+            <h1>Polygon Data</h1>
             {loading ?
                 <div className={'point-loading'}>
                     <p>{file.name}: {(file.size / 1024 / 1024).toPrecision(4)} Mb</p>
@@ -31,7 +31,7 @@ export default function GeoJsonLoader({ onLoaded }) {
                 </div>
                 :
                 <React.Fragment>
-                    <input type='file' name='geofile' id='geofile' onChange={(e) => loadFile(e.target.files)} className={'inputfile'} />
+                    <input accept='.geojson' type='file' name='geofile' id='geofile' onChange={(e) => loadFile(e.target.files)} className={'inputfile'} />
                     <label for='geofile'>Select GeoJSON file</label>
                 </React.Fragment>
             }
