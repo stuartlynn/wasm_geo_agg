@@ -15,7 +15,7 @@ use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
 
 use serde_json;
-use serde_json::{to_value, Map};
+use serde_json::Map;
 
 use web_sys::console;
 
@@ -61,7 +61,7 @@ impl PolygonDataset {
             }
         };
         let mut fill = false;
-        if (count_map.len() > 0) {
+        if count_map.len() > 0 {
             fill = true;
         }
 
@@ -126,7 +126,7 @@ impl PolygonDataset {
                             context.line_to(x as f64, y as f64);
                         };
                     }
-                    if (fill) {
+                    if fill {
                         context.fill();
                     } else {
                         context.stroke();

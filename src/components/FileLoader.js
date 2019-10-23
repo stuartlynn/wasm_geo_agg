@@ -9,6 +9,7 @@ import { processInChunks, suggestLatitude, suggestLongitude } from '../utils'
 
 import {
     PointDataset,
+    BulkCSVLoader
 } from '/wasm/Cargo.toml';
 
 export default function FileLoader({ type, onLoaded }) {
@@ -53,24 +54,21 @@ export default function FileLoader({ type, onLoaded }) {
     }
 
     const loadFile = async () => {
-        const dataset = PointDataset.new_empty();
+        const csv_loader = BulkCSVLoader.new();
         const latColIndex = header.indexOf(latitudeCol)
         const lngColIndex = header.indexOf(longitudeCol)
 
         setPhase('loading')
+        const aggregateColLocations = columnsToAggregate.reduce((r, col) => { r[col] = header.indexOf(col); return r }, {})
 
         await processInChunks(file, setLoadPercent, (chunk) => {
-            // console.log(chunk)
-            // debugger
-            dataset.append_csv(chunk, latColIndex, lngColIndex);
+            csv_loader.append_csv(chunk, latColIndex, lngColIndex, aggregateColLocations);
         })
 
-        dataset.generateTree()
-
         if (onLoaded) {
-            onLoaded(dataset)
+            const dataset = csv_loader.create_dataset();
+            onLoaded({ dataset, columns: aggregateColLocations })
         }
-        // let dataset = new Dataset()
     }
 
 

@@ -9,14 +9,7 @@ import { saveAs } from 'file-saver';
 
 
 import {
-  add,
-  parse_csv,
-  Dataset,
-  load_csv,
-  load_geojson,
-  PolygonDataset,
-  count_in_poly,
-  test_map
+  agg_in_poly
 } from '/wasm/Cargo.toml';
 import { count_csv_rows } from './utils';
 
@@ -28,6 +21,7 @@ function App(props) {
   const [polyDataset, setPolyDataset] = useState(null);
   const [blockAggs, setBlockAggs] = useState({});
   const [aggTime, setAggTime] = useState(0);
+  const [aggregated, setAggregated] = useState(false);
   const [columnsToAggregate, setColumnsToAggregate] = useState([])
 
 
@@ -37,9 +31,10 @@ function App(props) {
     setBounds(startBounds);
   };
 
-  const pointDatasetLoaded = (dataset, columns) => {
+  const pointDatasetLoaded = ({ dataset, columns }) => {
     setDataset(dataset);
-    setColumnsToAggregate(columns);
+    console.log("in index.js columns are ", columns);
+    setColumnsToAggregate(Object.keys(columns));
     setBounds([dataset.lng_min, dataset.lat_min, dataset.lng_max, dataset.lat_max]);
   }
 
@@ -56,9 +51,12 @@ function App(props) {
 
   const onCalcIntersection = () => {
     var t0 = performance.now();
-    let result = count_in_poly(polyDataset, dataset);
+    let result = agg_in_poly(polyDataset, dataset);
+    console.log('result is ', result)
+
     var t1 = performance.now();
-    setAggTime(t1 - t0)
+    setAggTime((t1 - t0) / 1000)
+    setAggregated(true)
     setBlockAggs(result.counts);
   }
 
@@ -86,9 +84,10 @@ function App(props) {
         {polyDataset ?
           <div>
             <h2>{polyDataset.no_objects} Polygons</h2>
-            <PolygonMap onZoomIn={boundsChanged} dataset={polyDataset} bounds={bounds} counts={blockAggs} />
+            <PolygonMap columns={columnsToAggregate} onZoomIn={boundsChanged} dataset={polyDataset} bounds={bounds} counts={blockAggs} />
           </div>
-          : <GeoJsonLoader onLoaded={(dataset => setPolyDataset(dataset))} />
+          :
+          <GeoJsonLoader onLoaded={(dataset => setPolyDataset(dataset))} />
         }
       </div>
 
@@ -96,8 +95,15 @@ function App(props) {
 
         {(dataset && polyDataset) ?
           <div className={'action-buttons'}>
-            <button onClick={onCalcIntersection}>Aggregate</button>
-            <button onClick={exportGeoJSON}>Save GeoJSON</button>
+            {aggregated ?
+              <div>
+                <h2>Aggregation took {aggTime.toPrecision(3)}s</h2>
+                <button onClick={exportGeoJSON}>Save GeoJSON</button>
+              </div>
+              :
+              <button onClick={onCalcIntersection}>Aggregate</button>
+            }
+
           </div>
           :
           <p>Select a csv containing latitude and logitude point data, and a geojson containing polygon data to aggregate to.</p>
