@@ -95092,7 +95092,7 @@ function readInChunks(file, progress_callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PolygonDataset = exports.PointDataset = exports.__wbindgen_memory = exports.__wbindgen_throw = exports.__wbindgen_debug_string = exports.__wbindgen_boolean_get = exports.__wbindgen_string_get = exports.__wbindgen_number_get = exports.__wbg_get_90b556116be91639 = exports.__wbg_byteLength_66504bf17d7a1c5a = exports.__wbg_instanceof_Uint8Array_7d7ec1a262a2de7d = exports.__wbg_set_662b22f1b4008ab7 = exports.__wbg_new_8f74bcd603e235c0 = exports.__wbg_length_deb426bb35063224 = exports.__wbg_buffer_cdcb54e9871fd20a = exports.__wbg_global_c6db5ff079ba98ed = exports.__wbg_window_b19864ecbde8d123 = exports.__wbg_self_78670bf6333531d2 = exports.__wbg_globalThis_b8da724777cacbb6 = exports.__wbg_entries_e656e3abaca44964 = exports.__wbg_newnoargs_8effd2c0e33a9e83 = exports.__wbg_new_4d5ae649984849e5 = exports.__wbg_values_f49c6f44904f94f2 = exports.__wbg_instanceof_ArrayBuffer_d086c184cea3b074 = exports.__wbg_call_11f5c018dea16986 = exports.__wbg_get_a7395f826d52f42a = exports.__wbg_iterator_73ac8b31a67356c7 = exports.__wbg_value_fdc45b6bdf81b305 = exports.__wbg_done_8173698bf9d912fd = exports.__wbg_next_9128d97f3cbbeb47 = exports.__wbg_next_3b99e11da1dc3f62 = exports.__wbindgen_is_function = exports.__wbindgen_object_clone_ref = exports.__wbindgen_is_undefined = exports.__wbindgen_is_null = exports.__wbindgen_is_object = exports.__widl_f_log_5_ = exports.__widl_f_log_3_ = exports.__widl_f_log_2_ = exports.__widl_f_log_1_ = exports.__widl_f_document_Window = exports.__widl_f_new_with_u8_clamped_array_and_sh_ImageData = exports.__widl_f_height_HTMLCanvasElement = exports.__widl_f_width_HTMLCanvasElement = exports.__widl_f_get_context_HTMLCanvasElement = exports.__widl_instanceof_HTMLCanvasElement = exports.__widl_f_get_element_by_id_Document = exports.__widl_f_fill_rect_CanvasRenderingContext2D = exports.__widl_f_clear_rect_CanvasRenderingContext2D = exports.__widl_f_move_to_CanvasRenderingContext2D = exports.__widl_f_line_to_CanvasRenderingContext2D = exports.__widl_f_put_image_data_CanvasRenderingContext2D = exports.__widl_f_set_fill_style_CanvasRenderingContext2D = exports.__widl_f_set_stroke_style_CanvasRenderingContext2D = exports.__widl_f_stroke_CanvasRenderingContext2D = exports.__widl_f_fill_CanvasRenderingContext2D = exports.__widl_f_begin_path_CanvasRenderingContext2D = exports.__widl_instanceof_CanvasRenderingContext2D = exports.__widl_instanceof_Window = exports.__wbindgen_json_parse = exports.__wbindgen_number_new = exports.__wbindgen_object_drop_ref = exports.__wbindgen_string_new = exports.render_points_to_canvas = exports.count_in_poly = exports.load_geojson = exports.default = void 0;
+exports.PolygonDataset = exports.PointDataset = exports.BulkCSVLoader = exports.__wbindgen_memory = exports.__wbindgen_throw = exports.__wbindgen_debug_string = exports.__wbindgen_boolean_get = exports.__wbindgen_string_get = exports.__wbindgen_number_get = exports.__wbg_get_90b556116be91639 = exports.__wbg_byteLength_66504bf17d7a1c5a = exports.__wbg_instanceof_Uint8Array_7d7ec1a262a2de7d = exports.__wbg_set_662b22f1b4008ab7 = exports.__wbg_new_8f74bcd603e235c0 = exports.__wbg_length_deb426bb35063224 = exports.__wbg_buffer_cdcb54e9871fd20a = exports.__wbg_global_c6db5ff079ba98ed = exports.__wbg_window_b19864ecbde8d123 = exports.__wbg_self_78670bf6333531d2 = exports.__wbg_globalThis_b8da724777cacbb6 = exports.__wbg_entries_e656e3abaca44964 = exports.__wbg_isSafeInteger_17f1480da339e7c7 = exports.__wbg_newnoargs_8effd2c0e33a9e83 = exports.__wbg_new_4d5ae649984849e5 = exports.__wbg_values_f49c6f44904f94f2 = exports.__wbg_instanceof_ArrayBuffer_d086c184cea3b074 = exports.__wbg_call_11f5c018dea16986 = exports.__wbg_get_a7395f826d52f42a = exports.__wbg_iterator_73ac8b31a67356c7 = exports.__wbg_value_fdc45b6bdf81b305 = exports.__wbg_done_8173698bf9d912fd = exports.__wbg_next_9128d97f3cbbeb47 = exports.__wbg_next_3b99e11da1dc3f62 = exports.__wbindgen_is_function = exports.__wbindgen_object_clone_ref = exports.__wbindgen_is_undefined = exports.__wbindgen_is_null = exports.__wbindgen_is_object = exports.__widl_f_log_5_ = exports.__widl_f_log_3_ = exports.__widl_f_log_2_ = exports.__widl_f_log_1_ = exports.__widl_f_document_Window = exports.__widl_f_new_with_u8_clamped_array_and_sh_ImageData = exports.__widl_f_height_HTMLCanvasElement = exports.__widl_f_width_HTMLCanvasElement = exports.__widl_f_get_context_HTMLCanvasElement = exports.__widl_instanceof_HTMLCanvasElement = exports.__widl_f_get_element_by_id_Document = exports.__widl_f_fill_rect_CanvasRenderingContext2D = exports.__widl_f_clear_rect_CanvasRenderingContext2D = exports.__widl_f_move_to_CanvasRenderingContext2D = exports.__widl_f_line_to_CanvasRenderingContext2D = exports.__widl_f_put_image_data_CanvasRenderingContext2D = exports.__widl_f_set_fill_style_CanvasRenderingContext2D = exports.__widl_f_set_stroke_style_CanvasRenderingContext2D = exports.__widl_f_stroke_CanvasRenderingContext2D = exports.__widl_f_fill_CanvasRenderingContext2D = exports.__widl_f_begin_path_CanvasRenderingContext2D = exports.__widl_instanceof_CanvasRenderingContext2D = exports.__widl_instanceof_Window = exports.__wbindgen_json_parse = exports.__wbindgen_string_new = exports.__wbindgen_number_new = exports.__wbindgen_object_drop_ref = exports.render_points_to_canvas = exports.agg_in_poly = exports.load_geojson = exports.default = void 0;
 
 var _wasm_bg = _interopRequireDefault(require("./pkg/wasm_bg.wasm"));
 
@@ -95102,16 +95102,16 @@ var _default = _wasm_bg.default;
 exports.default = _default;
 var load_geojson = _wasm_bg.default.load_geojson;
 exports.load_geojson = load_geojson;
-var count_in_poly = _wasm_bg.default.count_in_poly;
-exports.count_in_poly = count_in_poly;
+var agg_in_poly = _wasm_bg.default.agg_in_poly;
+exports.agg_in_poly = agg_in_poly;
 var render_points_to_canvas = _wasm_bg.default.render_points_to_canvas;
 exports.render_points_to_canvas = render_points_to_canvas;
-var __wbindgen_string_new = _wasm_bg.default.__wbindgen_string_new;
-exports.__wbindgen_string_new = __wbindgen_string_new;
 var __wbindgen_object_drop_ref = _wasm_bg.default.__wbindgen_object_drop_ref;
 exports.__wbindgen_object_drop_ref = __wbindgen_object_drop_ref;
 var __wbindgen_number_new = _wasm_bg.default.__wbindgen_number_new;
 exports.__wbindgen_number_new = __wbindgen_number_new;
+var __wbindgen_string_new = _wasm_bg.default.__wbindgen_string_new;
+exports.__wbindgen_string_new = __wbindgen_string_new;
 var __wbindgen_json_parse = _wasm_bg.default.__wbindgen_json_parse;
 exports.__wbindgen_json_parse = __wbindgen_json_parse;
 var __widl_instanceof_Window = _wasm_bg.default.__widl_instanceof_Window;
@@ -95192,6 +95192,8 @@ var __wbg_new_4d5ae649984849e5 = _wasm_bg.default.__wbg_new_4d5ae649984849e5;
 exports.__wbg_new_4d5ae649984849e5 = __wbg_new_4d5ae649984849e5;
 var __wbg_newnoargs_8effd2c0e33a9e83 = _wasm_bg.default.__wbg_newnoargs_8effd2c0e33a9e83;
 exports.__wbg_newnoargs_8effd2c0e33a9e83 = __wbg_newnoargs_8effd2c0e33a9e83;
+var __wbg_isSafeInteger_17f1480da339e7c7 = _wasm_bg.default.__wbg_isSafeInteger_17f1480da339e7c7;
+exports.__wbg_isSafeInteger_17f1480da339e7c7 = __wbg_isSafeInteger_17f1480da339e7c7;
 var __wbg_entries_e656e3abaca44964 = _wasm_bg.default.__wbg_entries_e656e3abaca44964;
 exports.__wbg_entries_e656e3abaca44964 = __wbg_entries_e656e3abaca44964;
 var __wbg_globalThis_b8da724777cacbb6 = _wasm_bg.default.__wbg_globalThis_b8da724777cacbb6;
@@ -95228,6 +95230,8 @@ var __wbindgen_throw = _wasm_bg.default.__wbindgen_throw;
 exports.__wbindgen_throw = __wbindgen_throw;
 var __wbindgen_memory = _wasm_bg.default.__wbindgen_memory;
 exports.__wbindgen_memory = __wbindgen_memory;
+var BulkCSVLoader = _wasm_bg.default.BulkCSVLoader;
+exports.BulkCSVLoader = BulkCSVLoader;
 var PointDataset = _wasm_bg.default.PointDataset;
 exports.PointDataset = PointDataset;
 var PolygonDataset = _wasm_bg.default.PolygonDataset;
@@ -95356,31 +95360,32 @@ function FileLoader(_ref) {
     var _ref2 = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
     _regenerator.default.mark(function _callee() {
-      var dataset, latColIndex, lngColIndex;
+      var csv_loader, latColIndex, lngColIndex, aggregateColLocations, dataset;
       return _regenerator.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              dataset = _Cargo.PointDataset.new_empty();
+              csv_loader = _Cargo.BulkCSVLoader.new();
               latColIndex = header.indexOf(latitudeCol);
               lngColIndex = header.indexOf(longitudeCol);
               setPhase('loading');
-              _context.next = 6;
+              aggregateColLocations = columnsToAggregate.reduce(function (r, col) {
+                r[col] = header.indexOf(col);
+                return r;
+              }, {});
+              console.log('aggregate columns are ', aggregateColLocations);
+              _context.next = 8;
               return (0, _utils.processInChunks)(file, setLoadPercent, function (chunk) {
-                // console.log(chunk)
-                // debugger
-                dataset.append_csv(chunk, latColIndex, lngColIndex);
+                csv_loader.append_csv(chunk, latColIndex, lngColIndex, aggregateColLocations);
               });
 
-            case 6:
-              dataset.generateTree();
-
-              if (onLoaded) {
-                onLoaded(dataset);
-              } // let dataset = new Dataset()
-
-
             case 8:
+              if (onLoaded) {
+                dataset = csv_loader.create_dataset();
+                onLoaded(dataset);
+              }
+
+            case 9:
             case "end":
               return _context.stop();
           }
@@ -95661,7 +95666,12 @@ function PolygonMap(_ref) {
   var canvasHeight = 700;
   (0, _react.useEffect)(function () {
     console.log("counts are ", counts);
-    dataset.display_with_counts('poly_canvas', counts, bounds[0], bounds[1], bounds[2], bounds[3]);
+    var col = 'count';
+    var mapped_values = {};
+    Object.keys(counts).forEach(function (regionID) {
+      mapped_values[regionID] = counts[regionID][col];
+    });
+    dataset.display_with_counts('poly_canvas', mapped_values, bounds[0], bounds[1], bounds[2], bounds[3]);
   }, [dataset, bounds, counts]);
 
   var zoomIn = function zoomIn(e) {
@@ -95747,15 +95757,20 @@ function App(props) {
       aggTime = _useState8[0],
       setAggTime = _useState8[1];
 
-  var _useState9 = (0, _react.useState)([]),
+  var _useState9 = (0, _react.useState)(false),
       _useState10 = (0, _slicedToArray2.default)(_useState9, 2),
-      columnsToAggregate = _useState10[0],
-      setColumnsToAggregate = _useState10[1];
+      aggregated = _useState10[0],
+      setAggregated = _useState10[1];
 
-  var _useState11 = (0, _react.useState)(startBounds),
+  var _useState11 = (0, _react.useState)([]),
       _useState12 = (0, _slicedToArray2.default)(_useState11, 2),
-      bounds = _useState12[0],
-      setBounds = _useState12[1];
+      columnsToAggregate = _useState12[0],
+      setColumnsToAggregate = _useState12[1];
+
+  var _useState13 = (0, _react.useState)(startBounds),
+      _useState14 = (0, _slicedToArray2.default)(_useState13, 2),
+      bounds = _useState14[0],
+      setBounds = _useState14[1];
 
   var reset = function reset() {
     setBounds(startBounds);
@@ -95763,6 +95778,7 @@ function App(props) {
 
   var pointDatasetLoaded = function pointDatasetLoaded(dataset, columns) {
     setDataset(dataset);
+    console.log("columns are ", columns);
     setColumnsToAggregate(columns);
     setBounds([dataset.lng_min, dataset.lat_min, dataset.lng_max, dataset.lat_max]);
   };
@@ -95781,9 +95797,11 @@ function App(props) {
 
   var onCalcIntersection = function onCalcIntersection() {
     var t0 = performance.now();
-    var result = (0, _Cargo.count_in_poly)(polyDataset, dataset);
+    var result = (0, _Cargo.agg_in_poly)(polyDataset, dataset);
+    console.log('result is ', result);
     var t1 = performance.now();
-    setAggTime(t1 - t0);
+    setAggTime((t1 - t0) / 1000);
+    setAggregated(true);
     setBlockAggs(result.counts);
   };
 
@@ -95816,11 +95834,11 @@ function App(props) {
     className: 'aggregate'
   }, dataset && polyDataset ? _react.default.createElement("div", {
     className: 'action-buttons'
-  }, _react.default.createElement("button", {
-    onClick: onCalcIntersection
-  }, "Aggregate"), _react.default.createElement("button", {
+  }, aggregated ? _react.default.createElement("div", null, _react.default.createElement("h2", null, "Aggregation took ", aggTime.toPrecision(32), "s"), _react.default.createElement("button", {
     onClick: exportGeoJSON
-  }, "Save GeoJSON")) : _react.default.createElement("p", null, "Select a csv containing latitude and logitude point data, and a geojson containing polygon data to aggregate to.")), _react.default.createElement("div", {
+  }, "Save GeoJSON")) : _react.default.createElement("button", {
+    onClick: onCalcIntersection
+  }, "Aggregate")) : _react.default.createElement("p", null, "Select a csv containing latitude and logitude point data, and a geojson containing polygon data to aggregate to.")), _react.default.createElement("div", {
     className: 'footer'
   }, _react.default.createElement("p", null)));
 }
@@ -95856,7 +95874,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35019" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39865" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -96249,10 +96267,10 @@ function takeObject(idx) {
 * @param {PointDataset} points
 * @returns {any}
 */
-__exports. count_in_poly = function(polys, points) {
+__exports. agg_in_poly = function(polys, points) {
     _assertClass(polys, PolygonDataset);
     _assertClass(points, PointDataset);
-    const ret = wasm.count_in_poly(polys.ptr, points.ptr);
+    const ret = wasm.agg_in_poly(polys.ptr, points.ptr);
     return takeObject(ret);
 }
 
@@ -96388,6 +96406,49 @@ function debugString(val) {
 }
 /**
 */
+class  BulkCSVLoader {
+
+    static __wrap(ptr) {
+        const obj = Object.create(BulkCSVLoader.prototype);
+        obj.ptr = ptr;
+
+        return obj;
+    }
+
+    free() {
+        const ptr = this.ptr;
+        this.ptr = 0;
+
+        wasm.__wbg_bulkcsvloader_free(ptr);
+    }
+    /**
+    * @returns {BulkCSVLoader}
+    */
+    static new() {
+        const ret = wasm.bulkcsvloader_new();
+        return BulkCSVLoader.__wrap(ret);
+    }
+    /**
+    * @param {string} csv
+    * @param {number} lat_col
+    * @param {number} lng_col
+    * @param {any} data_columns
+    */
+    append_csv(csv, lat_col, lng_col, data_columns) {
+        wasm.bulkcsvloader_append_csv(this.ptr, passStringToWasm(csv), WASM_VECTOR_LEN, lat_col, lng_col, addHeapObject(data_columns));
+    }
+    /**
+    * @returns {PointDataset}
+    */
+    create_dataset() {
+        const ptr = this.ptr;
+        this.ptr = 0;
+        const ret = wasm.bulkcsvloader_create_dataset(ptr);
+        return PointDataset.__wrap(ret);
+    }
+}
+/**
+*/
 class  PointDataset {
 
     static __wrap(ptr) {
@@ -96467,36 +96528,6 @@ class  PointDataset {
     */
     set lng_min(arg0) {
         wasm.__wbg_set_pointdataset_lng_min(this.ptr, arg0);
-    }
-    /**
-    * @returns {PointDataset}
-    */
-    static new_empty() {
-        const ret = wasm.pointdataset_new_empty();
-        return PointDataset.__wrap(ret);
-    }
-    /**
-    */
-    generateTree() {
-        wasm.pointdataset_generateTree(this.ptr);
-    }
-    /**
-    * @param {string} csv
-    * @param {number} lat_col
-    * @param {number} lng_col
-    */
-    append_csv(csv, lat_col, lng_col) {
-        wasm.pointdataset_append_csv(this.ptr, passStringToWasm(csv), WASM_VECTOR_LEN, lat_col, lng_col);
-    }
-    /**
-    * @param {string} csv
-    * @param {number} lat_col
-    * @param {number} lng_col
-    * @returns {PointDataset}
-    */
-    static from_csv(csv, lat_col, lng_col) {
-        const ret = wasm.pointdataset_from_csv(passStringToWasm(csv), WASM_VECTOR_LEN, lat_col, lng_col);
-        return PointDataset.__wrap(ret);
     }
 }
 /**
@@ -96578,17 +96609,17 @@ class  PolygonDataset {
     }
 }
 
-__exports.__wbindgen_string_new = function(arg0, arg1) {
-    const ret = getStringFromWasm(arg0, arg1);
-    return addHeapObject(ret);
-};
-
 __exports.__wbindgen_object_drop_ref = function(arg0) {
     takeObject(arg0);
 };
 
 __exports.__wbindgen_number_new = function(arg0) {
     const ret = arg0;
+    return addHeapObject(ret);
+};
+
+__exports.__wbindgen_string_new = function(arg0, arg1) {
+    const ret = getStringFromWasm(arg0, arg1);
     return addHeapObject(ret);
 };
 
@@ -96803,6 +96834,11 @@ __exports.__wbg_newnoargs_8effd2c0e33a9e83 = function(arg0, arg1) {
     return addHeapObject(ret);
 };
 
+__exports.__wbg_isSafeInteger_17f1480da339e7c7 = function(arg0) {
+    const ret = Number.isSafeInteger(getObject(arg0));
+    return ret;
+};
+
 __exports.__wbg_entries_e656e3abaca44964 = function(arg0) {
     const ret = Object.entries(getObject(arg0));
     return addHeapObject(ret);
@@ -96923,6 +96959,7 @@ __exports.__wbindgen_memory = function() {
 };
 
 
+__exports. BulkCSVLoader =  BulkCSVLoader;
 __exports. PointDataset =  PointDataset;
 __exports. PolygonDataset =  PolygonDataset;
       function init(wasm_path) {
