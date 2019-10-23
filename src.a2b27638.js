@@ -95373,19 +95373,21 @@ function FileLoader(_ref) {
                 r[col] = header.indexOf(col);
                 return r;
               }, {});
-              console.log('aggregate columns are ', aggregateColLocations);
-              _context.next = 8;
+              _context.next = 7;
               return (0, _utils.processInChunks)(file, setLoadPercent, function (chunk) {
                 csv_loader.append_csv(chunk, latColIndex, lngColIndex, aggregateColLocations);
               });
 
-            case 8:
+            case 7:
               if (onLoaded) {
                 dataset = csv_loader.create_dataset();
-                onLoaded(dataset);
+                onLoaded({
+                  dataset: dataset,
+                  columns: aggregateColLocations
+                });
               }
 
-            case 9:
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -95649,30 +95651,49 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = PolygonMap;
 
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
 var _react = _interopRequireWildcard(require("react"));
 
-var _Cargo = require("/wasm/Cargo.toml");
+var _InputLabel = _interopRequireDefault(require("@material-ui/core/InputLabel"));
+
+var _MenuItem = _interopRequireDefault(require("@material-ui/core/MenuItem"));
+
+var _FormControl = _interopRequireDefault(require("@material-ui/core/FormControl"));
+
+var _Select = _interopRequireDefault(require("@material-ui/core/Select"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function PolygonMap(_ref) {
   var dataset = _ref.dataset,
       bounds = _ref.bounds,
       counts = _ref.counts,
-      onZoomIn = _ref.onZoomIn;
+      onZoomIn = _ref.onZoomIn,
+      columns = _ref.columns;
   var canvasWidth = 700;
   var canvasHeight = 700;
+
+  var _useState = (0, _react.useState)('count'),
+      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+      selectedColumn = _useState2[0],
+      setSelectedColumn = _useState2[1];
+
+  console.log("Columns ARE columns", columns);
   (0, _react.useEffect)(function () {
     console.log("counts are ", counts);
-    var col = 'count';
+    var col = selectedColumn;
     var mapped_values = {};
     Object.keys(counts).forEach(function (regionID) {
-      mapped_values[regionID] = counts[regionID][col];
+      mapped_values[regionID] = counts[regionID][col] ? counts[regionID][col] : 0.0;
     });
+    console.log('mapped values are ', mapped_values);
     dataset.display_with_counts('poly_canvas', mapped_values, bounds[0], bounds[1], bounds[2], bounds[3]);
-  }, [dataset, bounds, counts]);
+  }, [dataset, bounds, counts, selectedColumn]);
 
   var zoomIn = function zoomIn(e) {
     var x = e.clientX * (bounds[2] - bounds[0]) / canvasWidth + bounds[0];
@@ -95685,7 +95706,35 @@ function PolygonMap(_ref) {
     }
   };
 
-  return _react.default.createElement("canvas", {
+  return _react.default.createElement(_react.default.Fragment, null, columns && columns.length > 0 && _react.default.createElement("div", {
+    id: "columnSelector"
+  }, _react.default.createElement(_FormControl.default, {
+    style: {
+      minWidth: '300px',
+      color: 'white'
+    }
+  }, _react.default.createElement(_InputLabel.default, {
+    style: {
+      color: 'white'
+    },
+    htmlFor: "latitude-simple"
+  }, "Column to show"), _react.default.createElement(_Select.default, {
+    style: {
+      color: 'white'
+    },
+    value: selectedColumn,
+    onChange: function onChange(e) {
+      setSelectedColumn(e.target.value);
+    }
+  }, columns.map(function (c) {
+    return _react.default.createElement(_MenuItem.default, {
+      key: c,
+      value: c
+    }, c);
+  }), _react.default.createElement(_MenuItem.default, {
+    key: 'count',
+    value: 'count'
+  }, "count")))), _react.default.createElement("canvas", {
     id: "poly_canvas",
     width: 1000,
     height: 1000,
@@ -95695,9 +95744,9 @@ function PolygonMap(_ref) {
       border: '1px solid black'
     },
     onClick: zoomIn
-  });
+  }));
 }
-},{"react":"node_modules/react/index.js","/wasm/Cargo.toml":"wasm/Cargo.toml"}],"node_modules/file-saver/dist/FileSaver.min.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/slicedToArray":"node_modules/@babel/runtime/helpers/slicedToArray.js","react":"node_modules/react/index.js","@material-ui/core/InputLabel":"node_modules/@material-ui/core/esm/InputLabel/index.js","@material-ui/core/MenuItem":"node_modules/@material-ui/core/esm/MenuItem/index.js","@material-ui/core/FormControl":"node_modules/@material-ui/core/esm/FormControl/index.js","@material-ui/core/Select":"node_modules/@material-ui/core/esm/Select/index.js"}],"node_modules/file-saver/dist/FileSaver.min.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 (function(a,b){if("function"==typeof define&&define.amd)define([],b);else if("undefined"!=typeof exports)b();else{b(),a.FileSaver={exports:{}}.exports}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Deprecated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(b,c,d){var e=new XMLHttpRequest;e.open("GET",b),e.responseType="blob",e.onload=function(){a(e.response,c,d)},e.onerror=function(){console.error("could not download file")},e.send()}function d(a){var b=new XMLHttpRequest;b.open("HEAD",a,!1);try{b.send()}catch(a){}return 200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.saveAs||("object"!=typeof window||window!==f?function(){}:"download"in HTMLAnchorElement.prototype?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(a,b,d,e){if(e=e||open("","_blank"),e&&(e.document.title=e.document.body.innerText="downloading..."),"string"==typeof a)return c(a,b,d);var g="application/octet-stream"===a.type,h=/constructor/i.test(f.HTMLElement)||f.safari,i=/CriOS\/[\d]+/.test(navigator.userAgent);if((i||g&&h)&&"object"==typeof FileReader){var j=new FileReader;j.onloadend=function(){var a=j.result;a=i?a:a.replace(/^data:[^;]*;/,"data:attachment/file;"),e?e.location.href=a:location=a,e=null},j.readAsDataURL(a)}else{var k=f.URL||f.webkitURL,l=k.createObjectURL(a);e?e.location=l:location.href=l,e=null,setTimeout(function(){k.revokeObjectURL(l)},4E4)}});f.saveAs=a.saveAs=a,"undefined"!=typeof module&&(module.exports=a)});
@@ -95776,10 +95825,12 @@ function App(props) {
     setBounds(startBounds);
   };
 
-  var pointDatasetLoaded = function pointDatasetLoaded(dataset, columns) {
+  var pointDatasetLoaded = function pointDatasetLoaded(_ref) {
+    var dataset = _ref.dataset,
+        columns = _ref.columns;
     setDataset(dataset);
-    console.log("columns are ", columns);
-    setColumnsToAggregate(columns);
+    console.log("in index.js columns are ", columns);
+    setColumnsToAggregate(Object.keys(columns));
     setBounds([dataset.lng_min, dataset.lat_min, dataset.lng_max, dataset.lat_max]);
   };
 
@@ -95822,6 +95873,7 @@ function App(props) {
   })), _react.default.createElement("div", {
     className: 'polygons'
   }, polyDataset ? _react.default.createElement("div", null, _react.default.createElement("h2", null, polyDataset.no_objects, " Polygons"), _react.default.createElement(_PolygonMap.default, {
+    columns: columnsToAggregate,
     onZoomIn: boundsChanged,
     dataset: polyDataset,
     bounds: bounds,
@@ -95834,7 +95886,7 @@ function App(props) {
     className: 'aggregate'
   }, dataset && polyDataset ? _react.default.createElement("div", {
     className: 'action-buttons'
-  }, aggregated ? _react.default.createElement("div", null, _react.default.createElement("h2", null, "Aggregation took ", aggTime.toPrecision(32), "s"), _react.default.createElement("button", {
+  }, aggregated ? _react.default.createElement("div", null, _react.default.createElement("h2", null, "Aggregation took ", aggTime.toPrecision(3), "s"), _react.default.createElement("button", {
     onClick: exportGeoJSON
   }, "Save GeoJSON")) : _react.default.createElement("button", {
     onClick: onCalcIntersection
@@ -95874,7 +95926,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39865" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38551" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
