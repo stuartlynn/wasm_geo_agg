@@ -4,6 +4,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+// import Select from 'react-select';
 
 
 export default function PolygonMap({ dataset, bounds, counts, onZoomIn, columns }) {
@@ -51,25 +52,36 @@ export default function PolygonMap({ dataset, bounds, counts, onZoomIn, columns 
         }
     };
 
+    const customStyles = {
+        input: (provided) => ({ ...provided, backgroundColor: 'green' })
+    }
+
     return (
         <React.Fragment>
-            {(columns && columns.length > 0) &&
-                <div id='columnSelector'>
-                    <FormControl style={{ minWidth: '300px', color: 'white' }}>
-                        <InputLabel style={{ color: 'white' }} htmlFor="latitude-simple">Column to show</InputLabel>
-                        <Select
-                            style={{ color: 'white' }}
-                            value={selectedColumn}
-                            onChange={(e) => { setSelectedColumn(e.target.value) }}
-                        >
-                            {columns.map(c =>
-                                <MenuItem key={c} value={c}>{c}</MenuItem>
-                            )}
-                            <MenuItem key={'count'} value={'count'}>count</MenuItem>
-                        </Select>
-                    </FormControl>
-                </div>
-            }
+            <div class='polygon-map-header'>
+                <h2>{dataset.no_objects} Polygons</h2>
+
+                {(columns && columns.length > 0) &&
+
+                    <div id='columnSelector'>
+                        <FormControl style={{ minWidth: '300px', color: 'white' }}>
+                            <InputLabel style={{ color: 'white' }} htmlFor="latitude-simple">Column to show</InputLabel>
+                            <Select
+                                style={{ color: 'white' }}
+                                value={selectedColumn}
+                                onChange={(e) => { setSelectedColumn(e.target.value) }}
+                            >
+                                {columns.map(c =>
+                                    <MenuItem key={c} value={c}>{c}</MenuItem>
+                                )}
+                                <MenuItem key={'count'} value={'count'}>count</MenuItem>
+                            </Select>
+                        </FormControl>
+
+
+                    </div>
+                }
+            </div>
             <canvas
                 id="poly_canvas"
                 width={1000}

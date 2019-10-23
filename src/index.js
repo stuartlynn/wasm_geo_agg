@@ -52,6 +52,9 @@ function App(props) {
   const onCalcIntersection = () => {
     var t0 = performance.now();
     let result = agg_in_poly(polyDataset, dataset);
+
+    debugger
+
     console.log('result is ', result)
 
     var t1 = performance.now();
@@ -72,7 +75,6 @@ function App(props) {
       <div className={'points'}>
         {dataset ?
           <div>
-            <h2>{dataset.no_rows} Rows</h2>
             <PointMap onZoomIn={boundsChanged} dataset={dataset} bounds={bounds} />
           </div>
           :
@@ -83,7 +85,6 @@ function App(props) {
       <div className={'polygons'}>
         {polyDataset ?
           <div>
-            <h2>{polyDataset.no_objects} Polygons</h2>
             <PolygonMap columns={columnsToAggregate} onZoomIn={boundsChanged} dataset={polyDataset} bounds={bounds} counts={blockAggs} />
           </div>
           :

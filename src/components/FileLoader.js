@@ -8,7 +8,6 @@ import ProgressBar from './ProgressBar'
 import { processInChunks, suggestLatitude, suggestLongitude } from '../utils'
 
 import {
-    PointDataset,
     BulkCSVLoader
 } from '/wasm/Cargo.toml';
 
@@ -18,7 +17,7 @@ export default function FileLoader({ type, onLoaded }) {
     const [loadPercent, setLoadPercent] = useState(0)
     const [done, setDone] = useState(false)
     const [header, setHeader] = useState(null)
-    const [result, setResult] = useState(result)
+    const [colTypes, setColTypes] = useState([])
     const [latitudeCol, setLatitudeCol] = useState('')
     const [longitudeCol, setLongitudeCol] = useState('')
     const [phase, setPhase] = useState('selectFile')
@@ -38,9 +37,14 @@ export default function FileLoader({ type, onLoaded }) {
         const chunkSize = 1024 * 1000
         reader.onloadend = (e) => {
             if (e.target.readyState == FileReader.DONE) {
-                const firstLine = e.target.result.split('\n')[0]
+                const lines = e.target.result.split('\n')
+                const firstLine = lines[0]
+                const nextLine = lines[1].split(',')
+                const colType = nextLine.map((e) => isNaN(e) ? 'string' : 'numeric')
+
                 const columns = firstLine.split(',')
                 setHeader(columns)
+                setColTypes(colType)
                 setPhase('selectColumns')
                 const latitudeSuggestion = suggestLatitude(columns)
                 const longitudeSuggestion = suggestLongitude(columns)
@@ -121,9 +125,9 @@ export default function FileLoader({ type, onLoaded }) {
                                 </FormControl>
                             </div>
                             <div>
-                                <h2>Select columns you wish to aggregate</h2>
+                                <h2>Select numeric columns you wish to aggregate</h2>
                                 <ul className={'columns-to-aggregate'}>
-                                    {header.map((h) => <li>{h} <input type='checkbox' onChange={(e => updateColumnsList(h, e.target.checked))} value={columnsToAggregate.includes(h)} /></li>)}
+                                    {header.filter((h, index) => colTypes[index] == 'numeric').map((h) => <li>{h} <input type='checkbox' onChange={(e => updateColumnsList(h, e.target.checked))} value={columnsToAggregate.includes(h)} /></li>)}
                                 </ul>
                             </div>
 
