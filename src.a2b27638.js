@@ -84702,7 +84702,7 @@ function useIsFocusVisible() {
     ref: ref
   };
 }
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js"}],"node_modules/dom-helpers/esm/hasClass.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js"}],"node_modules/@material-ui/core/node_modules/dom-helpers/esm/hasClass.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -84714,7 +84714,7 @@ function hasClass(element, className) {
   if (element.classList) return !!className && element.classList.contains(className);
   return (" " + (element.className.baseVal || element.className) + " ").indexOf(" " + className + " ") !== -1;
 }
-},{}],"node_modules/dom-helpers/esm/addClass.js":[function(require,module,exports) {
+},{}],"node_modules/@material-ui/core/node_modules/dom-helpers/esm/addClass.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -84729,7 +84729,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function addClass(element, className) {
   if (element.classList) element.classList.add(className);else if (!(0, _hasClass.default)(element, className)) if (typeof element.className === 'string') element.className = element.className + " " + className;else element.setAttribute('class', (element.className && element.className.baseVal || '') + " " + className);
 }
-},{"./hasClass":"node_modules/dom-helpers/esm/hasClass.js"}],"node_modules/dom-helpers/esm/removeClass.js":[function(require,module,exports) {
+},{"./hasClass":"node_modules/@material-ui/core/node_modules/dom-helpers/esm/hasClass.js"}],"node_modules/@material-ui/core/node_modules/dom-helpers/esm/removeClass.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -84751,7 +84751,7 @@ function removeClass(element, className) {
     element.setAttribute('class', replaceClassName(element.className && element.className.baseVal || '', className));
   }
 }
-},{}],"node_modules/react-transition-group/esm/config.js":[function(require,module,exports) {
+},{}],"node_modules/@material-ui/core/node_modules/react-transition-group/esm/config.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -84762,7 +84762,7 @@ var _default = {
   disabled: false
 };
 exports.default = _default;
-},{}],"node_modules/react-transition-group/esm/utils/PropTypes.js":[function(require,module,exports) {
+},{}],"node_modules/@material-ui/core/node_modules/react-transition-group/esm/utils/PropTypes.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -84793,7 +84793,7 @@ var classNamesShape = "development" !== 'production' ? _propTypes.default.oneOfT
   exitActive: _propTypes.default.string
 })]) : null;
 exports.classNamesShape = classNamesShape;
-},{"prop-types":"node_modules/prop-types/index.js"}],"node_modules/react-transition-group/esm/TransitionGroupContext.js":[function(require,module,exports) {
+},{"prop-types":"node_modules/prop-types/index.js"}],"node_modules/@material-ui/core/node_modules/react-transition-group/esm/TransitionGroupContext.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -84808,7 +84808,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var _default = _react.default.createContext(null);
 
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"node_modules/react-transition-group/esm/Transition.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"node_modules/@material-ui/core/node_modules/react-transition-group/esm/Transition.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -85419,7 +85419,7 @@ Transition.ENTERED = 3;
 Transition.EXITING = 4;
 var _default = Transition;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","prop-types":"node_modules/prop-types/index.js","react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./config":"node_modules/react-transition-group/esm/config.js","./utils/PropTypes":"node_modules/react-transition-group/esm/utils/PropTypes.js","./TransitionGroupContext":"node_modules/react-transition-group/esm/TransitionGroupContext.js"}],"node_modules/react-transition-group/esm/CSSTransition.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","prop-types":"node_modules/prop-types/index.js","react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./config":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/config.js","./utils/PropTypes":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/utils/PropTypes.js","./TransitionGroupContext":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/TransitionGroupContext.js"}],"node_modules/@material-ui/core/node_modules/react-transition-group/esm/CSSTransition.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -85793,7 +85793,7 @@ CSSTransition.propTypes = "development" !== "production" ? (0, _extends2.default
 }) : {};
 var _default = CSSTransition;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","prop-types":"node_modules/prop-types/index.js","dom-helpers/addClass":"node_modules/dom-helpers/esm/addClass.js","dom-helpers/removeClass":"node_modules/dom-helpers/esm/removeClass.js","react":"node_modules/react/index.js","./Transition":"node_modules/react-transition-group/esm/Transition.js","./utils/PropTypes":"node_modules/react-transition-group/esm/utils/PropTypes.js"}],"node_modules/react-transition-group/esm/utils/ChildMapping.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","prop-types":"node_modules/prop-types/index.js","dom-helpers/addClass":"node_modules/@material-ui/core/node_modules/dom-helpers/esm/addClass.js","dom-helpers/removeClass":"node_modules/@material-ui/core/node_modules/dom-helpers/esm/removeClass.js","react":"node_modules/react/index.js","./Transition":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/Transition.js","./utils/PropTypes":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/utils/PropTypes.js"}],"node_modules/@material-ui/core/node_modules/react-transition-group/esm/utils/ChildMapping.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -85946,7 +85946,7 @@ function getNextChildMapping(nextProps, prevChildMapping, onExited) {
   });
   return children;
 }
-},{"react":"node_modules/react/index.js"}],"node_modules/react-transition-group/esm/TransitionGroup.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"node_modules/@material-ui/core/node_modules/react-transition-group/esm/TransitionGroup.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -86153,7 +86153,7 @@ TransitionGroup.propTypes = "development" !== "production" ? {
 TransitionGroup.defaultProps = defaultProps;
 var _default = TransitionGroup;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","@babel/runtime/helpers/esm/assertThisInitialized":"node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js","prop-types":"node_modules/prop-types/index.js","react":"node_modules/react/index.js","./TransitionGroupContext":"node_modules/react-transition-group/esm/TransitionGroupContext.js","./utils/ChildMapping":"node_modules/react-transition-group/esm/utils/ChildMapping.js"}],"node_modules/react-transition-group/esm/ReplaceTransition.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","@babel/runtime/helpers/esm/assertThisInitialized":"node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js","prop-types":"node_modules/prop-types/index.js","react":"node_modules/react/index.js","./TransitionGroupContext":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/TransitionGroupContext.js","./utils/ChildMapping":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/utils/ChildMapping.js"}],"node_modules/@material-ui/core/node_modules/react-transition-group/esm/ReplaceTransition.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -86305,7 +86305,7 @@ ReplaceTransition.propTypes = "development" !== "production" ? {
 } : {};
 var _default = ReplaceTransition;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","prop-types":"node_modules/prop-types/index.js","react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./TransitionGroup":"node_modules/react-transition-group/esm/TransitionGroup.js"}],"node_modules/react-transition-group/esm/SwitchTransition.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","prop-types":"node_modules/prop-types/index.js","react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./TransitionGroup":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/TransitionGroup.js"}],"node_modules/@material-ui/core/node_modules/react-transition-group/esm/SwitchTransition.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -86553,7 +86553,7 @@ SwitchTransition.defaultProps = {
 };
 var _default = SwitchTransition;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","prop-types":"node_modules/prop-types/index.js","./Transition":"node_modules/react-transition-group/esm/Transition.js","./TransitionGroupContext":"node_modules/react-transition-group/esm/TransitionGroupContext.js"}],"node_modules/react-transition-group/esm/index.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","prop-types":"node_modules/prop-types/index.js","./Transition":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/Transition.js","./TransitionGroupContext":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/TransitionGroupContext.js"}],"node_modules/@material-ui/core/node_modules/react-transition-group/esm/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -86609,7 +86609,7 @@ var _Transition = _interopRequireDefault(require("./Transition"));
 var _config = _interopRequireDefault(require("./config"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./CSSTransition":"node_modules/react-transition-group/esm/CSSTransition.js","./ReplaceTransition":"node_modules/react-transition-group/esm/ReplaceTransition.js","./SwitchTransition":"node_modules/react-transition-group/esm/SwitchTransition.js","./TransitionGroup":"node_modules/react-transition-group/esm/TransitionGroup.js","./Transition":"node_modules/react-transition-group/esm/Transition.js","./config":"node_modules/react-transition-group/esm/config.js"}],"node_modules/@material-ui/core/esm/ButtonBase/Ripple.js":[function(require,module,exports) {
+},{"./CSSTransition":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/CSSTransition.js","./ReplaceTransition":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/ReplaceTransition.js","./SwitchTransition":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/SwitchTransition.js","./TransitionGroup":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/TransitionGroup.js","./Transition":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/Transition.js","./config":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/config.js"}],"node_modules/@material-ui/core/esm/ButtonBase/Ripple.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -87076,7 +87076,7 @@ var _default = (0, _withStyles.default)(styles, {
 })(withMuiName(_react.default.memo(TouchRipple)));
 
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/toConsumableArray":"node_modules/@babel/runtime/helpers/esm/toConsumableArray.js","@babel/runtime/helpers/esm/objectWithoutProperties":"node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","react":"node_modules/react/index.js","prop-types":"node_modules/prop-types/index.js","react-transition-group":"node_modules/react-transition-group/esm/index.js","clsx":"node_modules/clsx/dist/clsx.m.js","../styles/withStyles":"node_modules/@material-ui/core/esm/styles/withStyles.js","./Ripple":"node_modules/@material-ui/core/esm/ButtonBase/Ripple.js"}],"node_modules/@material-ui/core/esm/ButtonBase/ButtonBase.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/toConsumableArray":"node_modules/@babel/runtime/helpers/esm/toConsumableArray.js","@babel/runtime/helpers/esm/objectWithoutProperties":"node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","react":"node_modules/react/index.js","prop-types":"node_modules/prop-types/index.js","react-transition-group":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/index.js","clsx":"node_modules/clsx/dist/clsx.m.js","../styles/withStyles":"node_modules/@material-ui/core/esm/styles/withStyles.js","./Ripple":"node_modules/@material-ui/core/esm/ButtonBase/Ripple.js"}],"node_modules/@material-ui/core/esm/ButtonBase/ButtonBase.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -90040,7 +90040,7 @@ var Grow = _react.default.forwardRef(function Grow(props, ref) {
 Grow.muiSupportAuto = true;
 var _default = Grow;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","react":"node_modules/react/index.js","prop-types":"node_modules/prop-types/index.js","react-transition-group":"node_modules/react-transition-group/esm/index.js","../styles/useTheme":"node_modules/@material-ui/core/esm/styles/useTheme.js","../transitions/utils":"node_modules/@material-ui/core/esm/transitions/utils.js","../utils/useForkRef":"node_modules/@material-ui/core/esm/utils/useForkRef.js"}],"node_modules/@material-ui/core/esm/Grow/index.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","react":"node_modules/react/index.js","prop-types":"node_modules/prop-types/index.js","react-transition-group":"node_modules/@material-ui/core/node_modules/react-transition-group/esm/index.js","../styles/useTheme":"node_modules/@material-ui/core/esm/styles/useTheme.js","../transitions/utils":"node_modules/@material-ui/core/esm/transitions/utils.js","../utils/useForkRef":"node_modules/@material-ui/core/esm/utils/useForkRef.js"}],"node_modules/@material-ui/core/esm/Grow/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -95298,10 +95298,10 @@ function FileLoader(_ref) {
       header = _useState8[0],
       setHeader = _useState8[1];
 
-  var _useState9 = (0, _react.useState)(result),
+  var _useState9 = (0, _react.useState)([]),
       _useState10 = (0, _slicedToArray2.default)(_useState9, 2),
-      result = _useState10[0],
-      setResult = _useState10[1];
+      colTypes = _useState10[0],
+      setColTypes = _useState10[1];
 
   var _useState11 = (0, _react.useState)(''),
       _useState12 = (0, _slicedToArray2.default)(_useState11, 2),
@@ -95339,9 +95339,15 @@ function FileLoader(_ref) {
 
     reader.onloadend = function (e) {
       if (e.target.readyState == FileReader.DONE) {
-        var firstLine = e.target.result.split('\n')[0];
+        var lines = e.target.result.split('\n');
+        var firstLine = lines[0];
+        var nextLine = lines[1].split(',');
+        var colType = nextLine.map(function (e) {
+          return isNaN(e) ? 'string' : 'numeric';
+        });
         var columns = firstLine.split(',');
         setHeader(columns);
+        setColTypes(colType);
         setPhase('selectColumns');
         var latitudeSuggestion = (0, _utils.suggestLatitude)(columns);
         var longitudeSuggestion = (0, _utils.suggestLongitude)(columns);
@@ -95469,9 +95475,11 @@ function FileLoader(_ref) {
       key: h,
       value: h
     }, h);
-  })))), _react.default.createElement("div", null, _react.default.createElement("h2", null, "Select columns you wish to aggregate"), _react.default.createElement("ul", {
+  })))), _react.default.createElement("div", null, _react.default.createElement("h2", null, "Select numeric columns you wish to aggregate"), _react.default.createElement("ul", {
     className: 'columns-to-aggregate'
-  }, header.map(function (h) {
+  }, header.filter(function (h, index) {
+    return colTypes[index] == 'numeric';
+  }).map(function (h) {
     return _react.default.createElement("li", null, h, " ", _react.default.createElement("input", {
       type: "checkbox",
       onChange: function onChange(e) {
@@ -95631,7 +95639,7 @@ function PointMap(_ref) {
     }
   };
 
-  return _react.default.createElement("canvas", {
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h2", null, dataset.no_rows, " Rows"), _react.default.createElement("canvas", {
     id: "point_canvas",
     width: 1000,
     height: 1000,
@@ -95641,15 +95649,34 @@ function PointMap(_ref) {
       border: '1px solid black'
     },
     onClick: zoomIn
-  });
+  }));
 }
-},{"react":"node_modules/react/index.js","/wasm/Cargo.toml":"wasm/Cargo.toml"}],"src/components/PolygonMap.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","/wasm/Cargo.toml":"wasm/Cargo.toml"}],"node_modules/@babel/runtime/helpers/defineProperty.js":[function(require,module,exports) {
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+},{}],"src/components/PolygonMap.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = PolygonMap;
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
@@ -95669,6 +95696,11 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+// import Select from 'react-select';
 function PolygonMap(_ref) {
   var dataset = _ref.dataset,
       bounds = _ref.bounds,
@@ -95706,7 +95738,16 @@ function PolygonMap(_ref) {
     }
   };
 
-  return _react.default.createElement(_react.default.Fragment, null, columns && columns.length > 0 && _react.default.createElement("div", {
+  var customStyles = {
+    input: function input(provided) {
+      return _objectSpread({}, provided, {
+        backgroundColor: 'green'
+      });
+    }
+  };
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
+    class: "polygon-map-header"
+  }, _react.default.createElement("h2", null, dataset.no_objects, " Polygons"), columns && columns.length > 0 && _react.default.createElement("div", {
     id: "columnSelector"
   }, _react.default.createElement(_FormControl.default, {
     style: {
@@ -95734,7 +95775,7 @@ function PolygonMap(_ref) {
   }), _react.default.createElement(_MenuItem.default, {
     key: 'count',
     value: 'count'
-  }, "count")))), _react.default.createElement("canvas", {
+  }, "count"))))), _react.default.createElement("canvas", {
     id: "poly_canvas",
     width: 1000,
     height: 1000,
@@ -95746,7 +95787,7 @@ function PolygonMap(_ref) {
     onClick: zoomIn
   }));
 }
-},{"@babel/runtime/helpers/slicedToArray":"node_modules/@babel/runtime/helpers/slicedToArray.js","react":"node_modules/react/index.js","@material-ui/core/InputLabel":"node_modules/@material-ui/core/esm/InputLabel/index.js","@material-ui/core/MenuItem":"node_modules/@material-ui/core/esm/MenuItem/index.js","@material-ui/core/FormControl":"node_modules/@material-ui/core/esm/FormControl/index.js","@material-ui/core/Select":"node_modules/@material-ui/core/esm/Select/index.js"}],"node_modules/file-saver/dist/FileSaver.min.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/defineProperty":"node_modules/@babel/runtime/helpers/defineProperty.js","@babel/runtime/helpers/slicedToArray":"node_modules/@babel/runtime/helpers/slicedToArray.js","react":"node_modules/react/index.js","@material-ui/core/InputLabel":"node_modules/@material-ui/core/esm/InputLabel/index.js","@material-ui/core/MenuItem":"node_modules/@material-ui/core/esm/MenuItem/index.js","@material-ui/core/FormControl":"node_modules/@material-ui/core/esm/FormControl/index.js","@material-ui/core/Select":"node_modules/@material-ui/core/esm/Select/index.js"}],"node_modules/file-saver/dist/FileSaver.min.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 (function(a,b){if("function"==typeof define&&define.amd)define([],b);else if("undefined"!=typeof exports)b();else{b(),a.FileSaver={exports:{}}.exports}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Deprecated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(b,c,d){var e=new XMLHttpRequest;e.open("GET",b),e.responseType="blob",e.onload=function(){a(e.response,c,d)},e.onerror=function(){console.error("could not download file")},e.send()}function d(a){var b=new XMLHttpRequest;b.open("HEAD",a,!1);try{b.send()}catch(a){}return 200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.saveAs||("object"!=typeof window||window!==f?function(){}:"download"in HTMLAnchorElement.prototype?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(a,b,d,e){if(e=e||open("","_blank"),e&&(e.document.title=e.document.body.innerText="downloading..."),"string"==typeof a)return c(a,b,d);var g="application/octet-stream"===a.type,h=/constructor/i.test(f.HTMLElement)||f.safari,i=/CriOS\/[\d]+/.test(navigator.userAgent);if((i||g&&h)&&"object"==typeof FileReader){var j=new FileReader;j.onloadend=function(){var a=j.result;a=i?a:a.replace(/^data:[^;]*;/,"data:attachment/file;"),e?e.location.href=a:location=a,e=null},j.readAsDataURL(a)}else{var k=f.URL||f.webkitURL,l=k.createObjectURL(a);e?e.location=l:location.href=l,e=null,setTimeout(function(){k.revokeObjectURL(l)},4E4)}});f.saveAs=a.saveAs=a,"undefined"!=typeof module&&(module.exports=a)});
@@ -95849,6 +95890,7 @@ function App(props) {
   var onCalcIntersection = function onCalcIntersection() {
     var t0 = performance.now();
     var result = (0, _Cargo.agg_in_poly)(polyDataset, dataset);
+    debugger;
     console.log('result is ', result);
     var t1 = performance.now();
     setAggTime((t1 - t0) / 1000);
@@ -95862,7 +95904,7 @@ function App(props) {
     className: 'header'
   }, _react.default.createElement("h1", null, "Fast Agg"), _react.default.createElement("h3", null, "An experiment in using wasm for GeoSpatial operations")), _react.default.createElement("div", {
     className: 'points'
-  }, dataset ? _react.default.createElement("div", null, _react.default.createElement("h2", null, dataset.no_rows, " Rows"), _react.default.createElement(_PointMap.default, {
+  }, dataset ? _react.default.createElement("div", null, _react.default.createElement(_PointMap.default, {
     onZoomIn: boundsChanged,
     dataset: dataset,
     bounds: bounds
@@ -95872,7 +95914,7 @@ function App(props) {
     }
   })), _react.default.createElement("div", {
     className: 'polygons'
-  }, polyDataset ? _react.default.createElement("div", null, _react.default.createElement("h2", null, polyDataset.no_objects, " Polygons"), _react.default.createElement(_PolygonMap.default, {
+  }, polyDataset ? _react.default.createElement("div", null, _react.default.createElement(_PolygonMap.default, {
     columns: columnsToAggregate,
     onZoomIn: boundsChanged,
     dataset: polyDataset,
@@ -95926,7 +95968,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38551" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46065" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
