@@ -71,9 +71,10 @@ export default function PolygonMap({ dataset, bounds, counts, onZoomIn, columns 
                                 value={selectedColumn}
                                 onChange={(e) => { setSelectedColumn(e.target.value) }}
                             >
-                                {columns.map(c =>
+                                {[...columns.map(c =>
                                     <MenuItem key={c} value={c}>{c}</MenuItem>
-                                )}
+                                ), ...columns.map(c => <MenuItem key={`${c}_avg`} value={`${c}_avg`}>{`${c}_avg`}</MenuItem>)
+                                ]}
                                 <MenuItem key={'count'} value={'count'}>count</MenuItem>
                             </Select>
                         </FormControl>
