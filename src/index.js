@@ -6,6 +6,8 @@ import GeoJsonLoader from './components/GeoJsonLoader'
 import PointMap from './components/PointMap'
 import PolygonMap from './components/PolygonMap'
 import { saveAs } from 'file-saver';
+import Loader from 'react-loader-spinner'
+
 
 
 import {
@@ -22,9 +24,8 @@ function App(props) {
   const [blockAggs, setBlockAggs] = useState({});
   const [aggTime, setAggTime] = useState(0);
   const [aggregated, setAggregated] = useState(false);
+
   const [columnsToAggregate, setColumnsToAggregate] = useState([])
-
-
   const [bounds, setBounds] = useState(startBounds);
 
   const reset = () => {
@@ -33,13 +34,13 @@ function App(props) {
 
   const pointDatasetLoaded = ({ dataset, columns }) => {
     setDataset(dataset);
-    console.log("in index.js columns are ", columns);
     setColumnsToAggregate(Object.keys(columns));
+    console.log('dataset bounds ', dataset.lng_min, dataset.lat_min, dataset.lng_max, dataset_lat_max);
     setBounds([dataset.lng_min, dataset.lat_min, dataset.lng_max, dataset.lat_max]);
   }
 
   const exportGeoJSON = () => {
-    const geojson = polyDataset.export_with_properties(blockAggs);
+    const geojson = polyDataset.export_geo_json();
     const blob = new Blob([geojson], { type: "text/plain;charset=utf-8" })
     saveAs(blob, "aggregated_result.geojson");
   }
@@ -48,12 +49,24 @@ function App(props) {
     setBounds(bounds)
   }
 
-
   const onCalcIntersection = () => {
     var t0 = performance.now();
     let result = agg_in_poly(polyDataset, dataset);
     let r = result.counts
+    var t1 = performance.now();
+    setAggTime((t1 - t0) / 1000)
+
+    Object.keys(r).forEach(regionID => {
+      Object.keys(r[regionID]).forEach(col => {
+        if (col !== 'count') {
+          result.counts[regionID][`${col}_avg`] = r[regionID][col] / r[regionID]['count']
+        }
+      })
+    })
+    r = result.counts
+
     let formated_result = {}
+
     Object.keys(r).forEach(regionID => {
       Object.keys(r[regionID]).forEach(col => {
         if (formated_result[col]) {
@@ -69,11 +82,9 @@ function App(props) {
       polyDataset.assign(k, formated_result[k]);
     })
     console.log('result is ', result)
-
-    var t1 = performance.now();
-    setAggTime((t1 - t0) / 1000)
     setAggregated(true)
     setBlockAggs(result.counts);
+
   }
 
 
