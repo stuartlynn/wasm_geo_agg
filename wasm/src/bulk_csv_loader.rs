@@ -78,7 +78,11 @@ impl BulkCSVLoader {
             }
           };
 
-          if lng > -180.0 && lat > -90.0 {
+          if lng > -180.0
+            && lat > -90.0
+            && !approx_eq!(f32, lat, 0.0, ulps = 3)
+            && !approx_eq!(f32, lat, 0.0, ulps = 3)
+          {
             if lng < self.lng_min {
               self.lng_min = lng;
             };

@@ -5,6 +5,9 @@ extern crate wasm_bindgen;
 #[macro_use]
 extern crate serde_derive;
 
+#[macro_use]
+extern crate float_cmp;
+
 use wasm_bindgen::prelude::*;
 use web_sys::console;
 
