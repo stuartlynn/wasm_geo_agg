@@ -15,7 +15,7 @@ use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
 
 use serde_json;
-use serde_json::{to_value, Map};
+use serde_json::Map;
 
 use web_sys::console;
 
@@ -26,6 +26,7 @@ pub struct PolygonDataset {
     pub no_objects: u32,
     objects: Vec<Geometry<f32>>,
     properties: Vec<Map<String, serde_json::Value>>,
+    externProperties: HashMap<String, HashMap<String, f32>>,
     bounds: [f32; 4],
     ids: Vec<u32>,
 }
@@ -39,14 +40,22 @@ impl PolygonDataset {
             no_objects: (geoms.len() as u32),
             objects: geoms,
             properties: properties,
+            externProperties: HashMap::new(),
             bounds: [0.0, 0.0, 0.0, 0.0],
             ids: ids,
         }
     }
 
-    pub fn to_geojson_with_counts(&self, counts: JsValue) -> String {
-        // for index in 0..self.ob
-        "".to_string()
+    pub fn assign(&mut self, colName: String, values: JsValue) {
+        // let value_dict: HashMap<String, f32> = serde_wasm_bindgen::from_value(values).unwrap();
+        let value_dict: HashMap<String, f32> = match serde_wasm_bindgen::from_value(values) {
+            Ok(val) => val,
+            Err(err) => {
+                console::log_2(&"Issue reading the hash map".into(), &err.into());
+                HashMap::new()
+            }
+        };
+        self.externProperties.insert(colName, value_dict);
     }
 
     pub fn display_with_counts(
@@ -66,7 +75,7 @@ impl PolygonDataset {
             }
         };
         let mut fill = false;
-        if (count_map.len() > 0) {
+        if count_map.len() > 0 {
             fill = true;
         }
 
@@ -131,7 +140,7 @@ impl PolygonDataset {
                             context.line_to(x as f64, y as f64);
                         };
                     }
-                    if (fill) {
+                    if fill {
                         context.fill();
                     } else {
                         context.stroke();
@@ -149,14 +158,8 @@ impl PolygonDataset {
     pub fn export_with_properties(&self, properties: JsValue) -> String {
         let mut features: Vec<Feature> = Vec::new();
 
-        let externProperties: HashMap<String, f32> =
-            match serde_wasm_bindgen::from_value(properties) {
-                Ok(val) => val,
-                Err(err) => {
-                    console::log_2(&"Issue reading properties hash map".into(), &err.into());
-                    HashMap::new()
-                }
-            };
+        // let externProperties: Vec<Map<String, serde_json::Value>> =
+        //     match serde_wasm_bindgen::from_value(properties).unwrap
 
         for index in 0..self.objects.len() {
             match &self.objects[index] {
@@ -164,13 +167,16 @@ impl PolygonDataset {
                     let geom_json = geojson::Geometry::new(geojson::Value::from(poly));
                     let mut oldProperties = self.properties[index].clone();
 
-                    let value: f32 = match externProperties.get(&index.to_string()) {
-                        Some(val) => *val,
-                        None => 0.0,
-                    };
-
-                    oldProperties
-                        .insert(String::from("count"), serde_json::to_value(value).unwrap());
+                    for col in self.externProperties.keys() {
+                        let values = self.externProperties.get(col).unwrap();
+                        let val = match values.get(&index.to_string()) {
+                            Some(val) => *val,
+                            None => 0.0,
+                        };
+                        oldProperties.insert(col.to_string(), serde_json::to_value(val).unwrap());
+                    }
+                    // oldProperties
+                    // .insert(String::from("count"), serde_json::to_value(value).unwrap());
                     let feature = Feature {
                         bbox: None,
                         geometry: Some(geom_json),
@@ -245,8 +251,6 @@ impl PolygonDataset {
                 let mut count = 0;
                 for feature in &ctn.features {
                     let vals = feature.properties.clone().unwrap();
-                    // let id = vals.get("bctcb2010").unwrap();
-                    // ids.push(id.to_string());
                     properties.push(vals);
                     ids.push(count);
                     count = count + 1;
@@ -255,7 +259,8 @@ impl PolygonDataset {
                         match &geom.value {
                             Value::Polygon(poly) => {
                                 let p: Polygon<f32> = geom.value.clone().try_into().unwrap();
-                                geometries.push(p.into());
+                                let mp: MultiPolygon<f32> = MultiPolygon(vec![p]);
+                                geometries.push(mp.into());
                                 no_polygons = no_polygons + 1;
                             }
                             Value::MultiPolygon(_) => {

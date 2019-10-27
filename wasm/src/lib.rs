@@ -8,6 +8,7 @@ extern crate serde_derive;
 use wasm_bindgen::prelude::*;
 use web_sys::console;
 
+mod bulk_csv_loader;
 mod point_dataset;
 mod polygon_dataset;
 mod ramp;
@@ -25,27 +26,19 @@ pub fn load_geojson(geojson: String) -> PolygonDataset {
 }
 
 #[wasm_bindgen]
-pub fn count_in_poly(polys: &PolygonDataset, points: &PointDataset) -> JsValue {
-  let mut idCounts: HashMap<u32, u32> = HashMap::new();
+pub fn agg_in_poly(polys: &PolygonDataset, points: &PointDataset) -> JsValue {
+  let mut idCounts: HashMap<u32, HashMap<String, f32>> = HashMap::new();
 
   for (i, poly) in polys.polys().iter().enumerate() {
     let id = polys.geom_id(i as usize);
-    let count = points.count_in(poly);
-    idCounts.insert(id, count);
+    let aggregates = points.agg_in(poly);
+    idCounts.insert(id, aggregates);
   }
   let result = CountResult { counts: idCounts };
   JsValue::from_serde(&result).unwrap()
 }
 
-// #[wasm_bindgen]
-// pub fn parse_csv(csv: String) -> JsValue {
-//   let dataset = PointDataset::from_csv_str(csv);
-//   let count_js: JsValue = dataset.no_rows.into();
-//   dataset.agg_to_blocks();
-//   return count_js;
-// }
-
 #[derive(Serialize)]
 pub struct CountResult {
-  pub counts: HashMap<u32, u32>,
+  pub counts: HashMap<u32, HashMap<String, f32>>,
 }

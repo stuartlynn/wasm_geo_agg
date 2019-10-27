@@ -8,7 +8,7 @@ import ProgressBar from './ProgressBar'
 import { processInChunks, suggestLatitude, suggestLongitude } from '../utils'
 
 import {
-    PointDataset,
+    BulkCSVLoader
 } from '/wasm/Cargo.toml';
 
 export default function FileLoader({ type, onLoaded }) {
@@ -17,19 +17,34 @@ export default function FileLoader({ type, onLoaded }) {
     const [loadPercent, setLoadPercent] = useState(0)
     const [done, setDone] = useState(false)
     const [header, setHeader] = useState(null)
-    const [result, setResult] = useState(result)
+    const [colTypes, setColTypes] = useState([])
     const [latitudeCol, setLatitudeCol] = useState('')
     const [longitudeCol, setLongitudeCol] = useState('')
     const [phase, setPhase] = useState('selectFile')
+    const [columnsToAggregate, setColumnsToAggregate] = useState([])
+
+    const updateColumnsList = (column, checked) => {
+        if (checked && !columnsToAggregate.includes(column)) {
+            setColumnsToAggregate([...columnsToAggregate, column]);
+        }
+        else if (!checked && columnsToAggregate.includes(column)) {
+            setColumnsToAggregate(columnsToAggregate.filter(col => col !== column))
+        }
+    }
 
     const LoadHeader = (file) => {
         const reader = new FileReader();
         const chunkSize = 1024 * 1000
         reader.onloadend = (e) => {
             if (e.target.readyState == FileReader.DONE) {
-                const firstLine = e.target.result.split('\n')[0]
+                const lines = e.target.result.split('\n')
+                const firstLine = lines[0]
+                const nextLine = lines[1].split(',')
+                const colType = nextLine.map((e) => isNaN(e) ? 'string' : 'numeric')
+
                 const columns = firstLine.split(',')
                 setHeader(columns)
+                setColTypes(colType)
                 setPhase('selectColumns')
                 const latitudeSuggestion = suggestLatitude(columns)
                 const longitudeSuggestion = suggestLongitude(columns)
@@ -43,24 +58,21 @@ export default function FileLoader({ type, onLoaded }) {
     }
 
     const loadFile = async () => {
-        const dataset = PointDataset.new_empty();
+        const csv_loader = BulkCSVLoader.new();
         const latColIndex = header.indexOf(latitudeCol)
         const lngColIndex = header.indexOf(longitudeCol)
 
         setPhase('loading')
+        const aggregateColLocations = columnsToAggregate.reduce((r, col) => { r[col] = header.indexOf(col); return r }, {})
 
         await processInChunks(file, setLoadPercent, (chunk) => {
-            // console.log(chunk)
-            // debugger
-            dataset.append_csv(chunk, latColIndex, lngColIndex);
+            csv_loader.append_csv(chunk, latColIndex, lngColIndex, aggregateColLocations);
         })
 
-        dataset.generateTree()
-
         if (onLoaded) {
-            onLoaded(dataset)
+            const dataset = csv_loader.create_dataset();
+            onLoaded({ dataset, columns: aggregateColLocations })
         }
-        // let dataset = new Dataset()
     }
 
 
@@ -73,10 +85,10 @@ export default function FileLoader({ type, onLoaded }) {
 
     return (
         <div>
-            <h1>File Loader</h1>
+            <h1>Point Data</h1>
             {phase == "selectFile" &&
                 <React.Fragment>
-                    <input type='file' name='csvfile' id='csvfile' onChange={(e) => gotFiles(e.target.files)} className={'inputfile'} />
+                    <input type='file' name='csvfile' id='csvfile' accept={".csv"} onChange={(e) => gotFiles(e.target.files)} className={'inputfile'} />
                     <label for='csvfile'>Select CSV file</label>
                 </React.Fragment>
             }
@@ -85,7 +97,7 @@ export default function FileLoader({ type, onLoaded }) {
                     <p>{file.name}</p>
                     {header &&
                         <div>
-                            <h2>Geo Columns</h2>
+                            <h2>Select the latitude and logitude columns</h2>
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
                                 <FormControl style={{ minWidth: '300px', color: 'white' }}>
                                     <InputLabel style={{ color: 'white' }} htmlFor="latitude-simple">Latitude Column</InputLabel>
@@ -113,9 +125,9 @@ export default function FileLoader({ type, onLoaded }) {
                                 </FormControl>
                             </div>
                             <div>
-                                <h2>Columns To Aggregate</h2>
+                                <h2>Select numeric columns you wish to aggregate</h2>
                                 <ul className={'columns-to-aggregate'}>
-                                    {header.map((h) => <li>{h} <input type='checkbox' /></li>)}
+                                    {header.filter((h, index) => colTypes[index] == 'numeric').map((h) => <li>{h} <input type='checkbox' onChange={(e => updateColumnsList(h, e.target.checked))} value={columnsToAggregate.includes(h)} /></li>)}
                                 </ul>
                             </div>
 

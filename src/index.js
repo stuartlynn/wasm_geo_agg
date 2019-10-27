@@ -9,19 +9,11 @@ import { saveAs } from 'file-saver';
 
 
 import {
-  add,
-  parse_csv,
-  Dataset,
-  load_csv,
-  load_geojson,
-  PolygonDataset,
-  count_in_poly,
-  test_map
+  agg_in_poly
 } from '/wasm/Cargo.toml';
 import { count_csv_rows } from './utils';
 
 const startBounds = [-74.25909, 40.477399, -73.700181, 40.916178];
-
 
 
 function App(props) {
@@ -29,14 +21,22 @@ function App(props) {
   const [polyDataset, setPolyDataset] = useState(null);
   const [blockAggs, setBlockAggs] = useState({});
   const [aggTime, setAggTime] = useState(0);
+  const [aggregated, setAggregated] = useState(false);
+  const [columnsToAggregate, setColumnsToAggregate] = useState([])
 
-  const [log, setLog] = useState(true);
-  const [pixDensity, setPixDensity] = useState(1);
+
   const [bounds, setBounds] = useState(startBounds);
 
   const reset = () => {
     setBounds(startBounds);
   };
+
+  const pointDatasetLoaded = ({ dataset, columns }) => {
+    setDataset(dataset);
+    console.log("in index.js columns are ", columns);
+    setColumnsToAggregate(Object.keys(columns));
+    setBounds([dataset.lng_min, dataset.lat_min, dataset.lng_max, dataset.lat_max]);
+  }
 
   const exportGeoJSON = () => {
     const geojson = polyDataset.export_with_properties(blockAggs);
@@ -51,9 +51,28 @@ function App(props) {
 
   const onCalcIntersection = () => {
     var t0 = performance.now();
-    let result = count_in_poly(polyDataset, dataset);
+    let result = agg_in_poly(polyDataset, dataset);
+    let r = result.counts
+    let formated_result = {}
+    Object.keys(r).forEach(regionID => {
+      Object.keys(r[regionID]).forEach(col => {
+        if (formated_result[col]) {
+          formated_result[col][regionID] = r[regionID][col]
+        }
+        else {
+          formated_result[col] = { regionID: r[regionID][col] }
+        }
+      })
+    })
+
+    Object.keys(formated_result).forEach(k => {
+      polyDataset.assign(k, formated_result[k]);
+    })
+    console.log('result is ', result)
+
     var t1 = performance.now();
-    setAggTime(t1 - t0)
+    setAggTime((t1 - t0) / 1000)
+    setAggregated(true)
     setBlockAggs(result.counts);
   }
 
@@ -69,30 +88,39 @@ function App(props) {
       <div className={'points'}>
         {dataset ?
           <div>
-            <h2>{dataset.no_rows} Rows</h2>
             <PointMap onZoomIn={boundsChanged} dataset={dataset} bounds={bounds} />
           </div>
           :
-          <FileLoader onLoaded={(dataset) => setDataset(dataset)} />
+          <FileLoader onLoaded={(dataset, columns) => { pointDatasetLoaded(dataset, columns) }} />
         }
       </div>
 
       <div className={'polygons'}>
         {polyDataset ?
           <div>
-            <h2>{polyDataset.no_objects} Polygons</h2>
-            <PolygonMap onZoomIn={boundsChanged} dataset={polyDataset} bounds={bounds} counts={blockAggs} />
+            <PolygonMap columns={columnsToAggregate} onZoomIn={boundsChanged} dataset={polyDataset} bounds={bounds} counts={blockAggs} />
           </div>
-          : <GeoJsonLoader onLoaded={(dataset => setPolyDataset(dataset))} />
+          :
+          <GeoJsonLoader onLoaded={(dataset => setPolyDataset(dataset))} />
         }
       </div>
 
       <div className={'aggregate'}>
-        {(dataset && polyDataset) &&
+
+        {(dataset && polyDataset) ?
           <div className={'action-buttons'}>
-            <button onClick={onCalcIntersection}>Aggregate</button>
-            <button onClick={exportGeoJSON}>Save GeoJSON</button>
+            {aggregated ?
+              <div>
+                <h2>Aggregation took {aggTime.toPrecision(3)}s</h2>
+                <button onClick={exportGeoJSON}>Save GeoJSON</button>
+              </div>
+              :
+              <button onClick={onCalcIntersection}>Aggregate</button>
+            }
+
           </div>
+          :
+          <p>Select a csv containing latitude and logitude point data, and a geojson containing polygon data to aggregate to.</p>
         }
       </div>
 

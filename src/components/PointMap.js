@@ -37,13 +37,15 @@ export default function PointMap({ onZoomIn, dataset, bounds }) {
     };
 
     return (
-        <canvas
-            id="point_canvas"
-            width={1000}
-            height={1000}
-            style={{ width: canvasWidth + 'px', height: canvasHeight + 'px', border: '1px solid black' }}
-            onClick={zoomIn}
-        />
-
+        <React.Fragment>
+            <h2>{dataset.no_rows.toLocaleString('en')} Rows</h2>
+            <canvas
+                id="point_canvas"
+                width={1000}
+                height={1000}
+                style={{ width: canvasWidth + 'px', height: canvasHeight + 'px', border: '1px solid black' }}
+                onClick={zoomIn}
+            />
+        </React.Fragment>
     )
 }

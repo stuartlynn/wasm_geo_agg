@@ -4,6 +4,8 @@ use wasm_bindgen::Clamped;
 use wasm_bindgen::JsCast;
 use web_sys::{console, ImageData};
 
+use super::point_dataset::PointWithData;
+
 use super::ramp::ramp;
 
 #[wasm_bindgen]
