@@ -52,9 +52,22 @@ function App(props) {
   const onCalcIntersection = () => {
     var t0 = performance.now();
     let result = agg_in_poly(polyDataset, dataset);
+    let r = result.counts
+    let formated_result = {}
+    Object.keys(r).forEach(regionID => {
+      Object.keys(r[regionID]).forEach(col => {
+        if (formated_result[col]) {
+          formated_result[col][regionID] = r[regionID][col]
+        }
+        else {
+          formated_result[col] = { regionID: r[regionID][col] }
+        }
+      })
+    })
 
-    debugger
-
+    Object.keys(formated_result).forEach(k => {
+      polyDataset.assign(k, formated_result[k]);
+    })
     console.log('result is ', result)
 
     var t1 = performance.now();
