@@ -59,7 +59,7 @@ export default function PolygonMap({ dataset, bounds, counts, onZoomIn, columns 
     return (
         <React.Fragment>
             <div class='polygon-map-header'>
-                <h2>{dataset.no_objects} Polygons</h2>
+                <h2>{dataset.no_objects.toLocaleString('en')} Polygons</h2>
 
                 {(columns && columns.length > 0) &&
 

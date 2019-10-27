@@ -38,7 +38,7 @@ export default function PointMap({ onZoomIn, dataset, bounds }) {
 
     return (
         <React.Fragment>
-            <h2>{dataset.no_rows} Rows</h2>
+            <h2>{dataset.no_rows.toLocaleString('en')} Rows</h2>
             <canvas
                 id="point_canvas"
                 width={1000}
