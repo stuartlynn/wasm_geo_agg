@@ -155,7 +155,7 @@ impl PolygonDataset {
         return self.ids[index];
     }
 
-    pub fn export_with_properties(&self, properties: JsValue) -> String {
+    pub fn export_geo_json(&self) -> String {
         let mut features: Vec<Feature> = Vec::new();
 
         // let externProperties: Vec<Map<String, serde_json::Value>> =
