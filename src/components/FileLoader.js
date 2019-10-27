@@ -66,7 +66,10 @@ export default function FileLoader({ type, onLoaded }) {
         const aggregateColLocations = columnsToAggregate.reduce((r, col) => { r[col] = header.indexOf(col); return r }, {})
 
         await processInChunks(file, setLoadPercent, (chunk) => {
+            var t0 = performance.now();
             csv_loader.append_csv(chunk, latColIndex, lngColIndex, aggregateColLocations);
+            var t1 = performance.now();
+            console.log('rust process time ', (t1 - t0) / 1000)
         })
 
         if (onLoaded) {
