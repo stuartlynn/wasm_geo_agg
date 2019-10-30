@@ -20,15 +20,21 @@ If you dont happen to have a bunch of geospatial datasets hanging around your co
 - Point data: [Street trees](https://data.cityofnewyork.us/api/views/5rq2-4hqu/rows.csv?accessType=DOWNLOAD)
 - Polygon data: [Census Blocks](https://data.cityofnewyork.us/api/geospatial/v2h8-6mxf?method=export&format=GeoJSON)
 
+![New york street tree census](https://github.com/stuartlynn/wasm_geo_agg/blob/master/screenshots/StreetTrees.png?raw=true)
+
 ### New York City Taxi Pickups 
 
 - Point data: [Taxi data for 2011 - 08](https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2011-08.csv)
 - Polygon data: [Census Blocks](https://data.cityofnewyork.us/api/geospatial/v2h8-6mxf?method=export&format=GeoJSON)
 
+![New york street tree census](https://github.com/stuartlynn/wasm_geo_agg/blob/master/screenshots/TaxiAggregationpng.png?raw=true)
+
 ### Chicago 311 data 
 
 - Point data: [311 complaints](https://data.cityofchicago.org/api/views/v6vf-nfxy/rows.csv?accessType=DOWNLOAD&bom=true&format=true&delimiter=%3B)
 - Polgon data: [Census Blocks](https://data.cityofchicago.org/api/geospatial/mfzt-js4n?method=export&format=GeoJSON)
+
+![Chicago 311](https://github.com/stuartlynn/wasm_geo_agg/blob/master/screenshots/Chicago311.png?raw=true)
 
 Suggest others in an issue and I will be happy to add them!
 
