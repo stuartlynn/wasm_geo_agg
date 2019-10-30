@@ -8,6 +8,8 @@ export default function PointMap({ onZoomIn, dataset, bounds }) {
     const canvasWidth = 700;
     const canvasHeight = 700;
 
+    const canvasEl = useRef(null)
+
     useEffect(() => {
         render_points_to_canvas('point_canvas',
             dataset,
@@ -22,16 +24,27 @@ export default function PointMap({ onZoomIn, dataset, bounds }) {
     }, [dataset, bounds])
 
     const zoomIn = e => {
-        const x = (e.clientX * (bounds[2] - bounds[0])) / canvasWidth + bounds[0];
-        const y = (e.clientY * (bounds[3] - bounds[1])) / canvasHeight + bounds[1];
-        const xrange = (bounds[2] - bounds[0]) * 0.75;
-        const yrange = (bounds[3] - bounds[1]) * 0.75;
+
+        console.log(canvasEl.current)
+        const xPc = (e.pageX - canvasEl.current.offsetLeft) / canvasWidth;
+        const yPc = (e.pageY - canvasEl.current.offsetTop) / canvasHeight;
+
+        const xrange = (bounds[2] - bounds[0]);
+        const yrange = (bounds[3] - bounds[1]);
+
+
+        const xCenter = (xPc * xrange) + bounds[0];
+        const yCenter = bounds[3] - (yPc * yrange);
+
+        console.log('new x ', xPc, bounds[0], xCenter, bounds[2])
+        console.log('new y ', yPc, bounds[1], yCenter, bounds[3])
+
         if (onZoomIn) {
             onZoomIn([
-                x - xrange / 2.0,
-                y - yrange / 2.0,
-                x + xrange / 2.0,
-                y + yrange / 2.0,
+                xCenter - xrange * 0.75 / 2.0,
+                yCenter - yrange * 0.75 / 2.0,
+                xCenter + xrange * 0.75 / 2.0,
+                yCenter + yrange * 0.75 / 2.0,
             ]);
         }
     };
@@ -40,6 +53,7 @@ export default function PointMap({ onZoomIn, dataset, bounds }) {
         <React.Fragment>
             <h2>{dataset.no_rows.toLocaleString('en')} Rows</h2>
             <canvas
+                ref={(ref) => canvasEl.current = ref}
                 id="point_canvas"
                 width={1000}
                 height={1000}
