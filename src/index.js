@@ -1,12 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import BarChart from './components/BarChart';
 import FileLoader from './components/FileLoader'
 import GeoJsonLoader from './components/GeoJsonLoader'
 import PointMap from './components/PointMap'
 import PolygonMap from './components/PolygonMap'
 import { saveAs } from 'file-saver';
-import Loader from 'react-loader-spinner'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faInfoCircle, faUser } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -32,6 +34,10 @@ function App(props) {
     e.preventDefault();
     setBounds([dataset.lng_min, dataset.lat_min, dataset.lng_max, dataset.lat_max]);
   };
+
+  const startAgain = () => {
+    window.location.reload()
+  }
 
   const pointDatasetLoaded = ({ dataset, columns }) => {
     setDataset(dataset);
@@ -94,14 +100,14 @@ function App(props) {
 
       <div className={'header'}>
         <h1>Fast Agg</h1>
-        <h3>An experiment in using wasm for GeoSpatial operations</h3>
+        <h3>An experiment in using wasm for geospatial operations. Learn more <a href=''>here</a></h3>
       </div>
 
       <div className={'points'}>
         {dataset ?
           <div>
             <PointMap onZoomIn={boundsChanged} dataset={dataset} bounds={bounds} />
-            <p>Click map to zoom. <a style={{ color: '#D5A583', textDecoration: 'none' }} href='' onClick={reset}>Reset view</a></p>
+            <p>Click map to zoom. <a href='' onClick={reset}>Reset view</a></p>
           </div>
           :
           <FileLoader onLoaded={(dataset, columns) => { pointDatasetLoaded(dataset, columns) }} />
@@ -112,7 +118,7 @@ function App(props) {
         {polyDataset ?
           <div>
             <PolygonMap columns={columnsToAggregate} onZoomIn={boundsChanged} dataset={polyDataset} bounds={bounds} counts={blockAggs} />
-            <p>Click map to zoom. <a style={{ color: '#D5A583', textDecoration: 'none' }} href='' onClick={reset}>Reset view</a></p>
+            <p>Click map to zoom. <a href='' onClick={reset}>Reset view</a></p>
           </div>
           :
           <GeoJsonLoader onLoaded={(dataset => setPolyDataset(dataset))} />
@@ -124,10 +130,11 @@ function App(props) {
         {(dataset && polyDataset) ?
           <div className={'action-buttons'}>
             {aggregated ?
-              <div>
+              <React.Fragment>
                 <h2>Aggregation took {aggTime.toPrecision(3)}s</h2>
                 <button onClick={exportGeoJSON}>Save GeoJSON</button>
-              </div>
+                <button onClick={startAgain}>Start Over</button>
+              </React.Fragment>
               :
               <button onClick={onCalcIntersection}>Aggregate</button>
             }
@@ -139,10 +146,10 @@ function App(props) {
       </div>
 
       <div className={'footer'}>
-        <span>Code</span>
-        <span>Twitter</span>
-        <span>About</span>
-        <span>Me (Stuart Lynn)</span>
+        <span><a tooltip='code' alt='code' target="_blank" href='https://github.com/stuartlynn/wasm_geo_agg'><FontAwesomeIcon icon={faGithub} size="2x" /></a></span>
+        <span><a tooltip='twitter' alt='twitter' target="_blank" href='https://twitter.com/stuart_lynn'><FontAwesomeIcon icon={faTwitter} size="2x" /></a></span>
+        <span><a tooltip='info' alt='info' target="_blank" href=""> <FontAwesomeIcon icon={faInfoCircle} size="2x" /></a></span>
+        <span><a tooltip='author' alt='author' target="_blank" href='http://stuartlynn.me/'><FontAwesomeIcon icon={faUser} size="2x" /></a></span>
       </div>
     </div>
   );
