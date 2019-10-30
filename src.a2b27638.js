@@ -95635,22 +95635,31 @@ function PointMap(_ref) {
       bounds = _ref.bounds;
   var canvasWidth = 700;
   var canvasHeight = 700;
+  var canvasEl = (0, _react.useRef)(null);
   (0, _react.useEffect)(function () {
     (0, _Cargo.render_points_to_canvas)('point_canvas', dataset, bounds[0], bounds[1], bounds[2], bounds[3], 1000, true, 1);
   }, [dataset, bounds]);
 
   var zoomIn = function zoomIn(e) {
-    var x = e.clientX * (bounds[2] - bounds[0]) / canvasWidth + bounds[0];
-    var y = e.clientY * (bounds[3] - bounds[1]) / canvasHeight + bounds[1];
-    var xrange = (bounds[2] - bounds[0]) * 0.75;
-    var yrange = (bounds[3] - bounds[1]) * 0.75;
+    console.log(canvasEl.current);
+    var xPc = (e.pageX - canvasEl.current.offsetLeft) / canvasWidth;
+    var yPc = (e.pageY - canvasEl.current.offsetTop) / canvasHeight;
+    var xrange = bounds[2] - bounds[0];
+    var yrange = bounds[3] - bounds[1];
+    var xCenter = xPc * xrange + bounds[0];
+    var yCenter = bounds[3] - yPc * yrange;
+    console.log('new x ', xPc, bounds[0], xCenter, bounds[2]);
+    console.log('new y ', yPc, bounds[1], yCenter, bounds[3]);
 
     if (onZoomIn) {
-      onZoomIn([x - xrange / 2.0, y - yrange / 2.0, x + xrange / 2.0, y + yrange / 2.0]);
+      onZoomIn([xCenter - xrange * 0.75 / 2.0, yCenter - yrange * 0.75 / 2.0, xCenter + xrange * 0.75 / 2.0, yCenter + yrange * 0.75 / 2.0]);
     }
   };
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h2", null, dataset.no_rows.toLocaleString('en'), " Rows"), _react.default.createElement("canvas", {
+    ref: function ref(_ref2) {
+      return canvasEl.current = _ref2;
+    },
     id: "point_canvas",
     width: 1000,
     height: 1000,
@@ -95739,15 +95748,21 @@ function PolygonMap(_ref) {
     console.log('mapped values are ', mapped_values);
     dataset.display_with_counts('poly_canvas', mapped_values, bounds[0], bounds[1], bounds[2], bounds[3]);
   }, [dataset, bounds, counts, selectedColumn]);
+  var canvasEl = (0, _react.useRef)(null);
 
   var zoomIn = function zoomIn(e) {
-    var x = e.clientX * (bounds[2] - bounds[0]) / canvasWidth + bounds[0];
-    var y = e.clientY * (bounds[3] - bounds[1]) / canvasHeight + bounds[1];
-    var xrange = (bounds[2] - bounds[0]) * 0.75;
-    var yrange = (bounds[3] - bounds[1]) * 0.75;
+    console.log(canvasEl.current);
+    var xPc = (e.pageX - canvasEl.current.offsetLeft) / canvasWidth;
+    var yPc = (e.pageY - canvasEl.current.offsetTop) / canvasHeight;
+    var xrange = bounds[2] - bounds[0];
+    var yrange = bounds[3] - bounds[1];
+    var xCenter = xPc * xrange + bounds[0];
+    var yCenter = bounds[3] - yPc * yrange;
+    console.log('new x ', xPc, bounds[0], xCenter, bounds[2]);
+    console.log('new y ', yPc, bounds[1], yCenter, bounds[3]);
 
     if (onZoomIn) {
-      onZoomIn([x - xrange / 2.0, y + yrange / 2.0, x + xrange / 2.0, y - yrange / 2.0]);
+      onZoomIn([xCenter - xrange * 0.75 / 2.0, yCenter - yrange * 0.75 / 2.0, xCenter + xrange * 0.75 / 2.0, yCenter + yrange * 0.75 / 2.0]);
     }
   };
 
@@ -95794,6 +95809,9 @@ function PolygonMap(_ref) {
     key: 'count',
     value: 'count'
   }, "count"))))), _react.default.createElement("canvas", {
+    ref: function ref(_ref2) {
+      return canvasEl.current = _ref2;
+    },
     id: "poly_canvas",
     width: 1000,
     height: 1000,
@@ -97911,8 +97929,9 @@ function App(props) {
       bounds = _useState14[0],
       setBounds = _useState14[1];
 
-  var reset = function reset() {
-    setBounds(startBounds);
+  var reset = function reset(e) {
+    e.preventDefault();
+    setBounds([dataset.lng_min, dataset.lat_min, dataset.lng_max, dataset.lat_max]);
   };
 
   var pointDatasetLoaded = function pointDatasetLoaded(_ref) {
@@ -97980,7 +97999,14 @@ function App(props) {
     onZoomIn: boundsChanged,
     dataset: dataset,
     bounds: bounds
-  })) : _react.default.createElement(_FileLoader.default, {
+  }), _react.default.createElement("p", null, "Click map to zoom. ", _react.default.createElement("a", {
+    style: {
+      color: '#D5A583',
+      textDecoration: 'none'
+    },
+    href: "",
+    onClick: reset
+  }, "Reset view"))) : _react.default.createElement(_FileLoader.default, {
     onLoaded: function onLoaded(dataset, columns) {
       pointDatasetLoaded(dataset, columns);
     }
@@ -97992,7 +98018,14 @@ function App(props) {
     dataset: polyDataset,
     bounds: bounds,
     counts: blockAggs
-  })) : _react.default.createElement(_GeoJsonLoader.default, {
+  }), _react.default.createElement("p", null, "Click map to zoom. ", _react.default.createElement("a", {
+    style: {
+      color: '#D5A583',
+      textDecoration: 'none'
+    },
+    href: "",
+    onClick: reset
+  }, "Reset view"))) : _react.default.createElement(_GeoJsonLoader.default, {
     onLoaded: function onLoaded(dataset) {
       return setPolyDataset(dataset);
     }
@@ -98006,7 +98039,7 @@ function App(props) {
     onClick: onCalcIntersection
   }, "Aggregate")) : _react.default.createElement("p", null, "Select a csv containing latitude and logitude point data, and a geojson containing polygon data to aggregate to.")), _react.default.createElement("div", {
     className: 'footer'
-  }, _react.default.createElement("p", null)));
+  }, _react.default.createElement("span", null, "Code"), _react.default.createElement("span", null, "Twitter"), _react.default.createElement("span", null, "About"), _react.default.createElement("span", null, "Me (Stuart Lynn)")));
 }
 
 var root = document.getElementById('app');
@@ -98040,7 +98073,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42303" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43029" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

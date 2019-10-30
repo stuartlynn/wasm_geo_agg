@@ -91,7 +91,10 @@ button:hover {
   grid-area: polygons; }
 
 .footer {
-  grid-area: footer; }
+  grid-area: footer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
 
 .aggregate {
   grid-area: aggregate; }
