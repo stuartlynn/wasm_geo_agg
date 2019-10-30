@@ -66371,7 +66371,7 @@ function App(props) {
   }, _react.default.createElement("div", {
     className: 'header'
   }, _react.default.createElement("h1", null, "Wasm Geo Aggregator!"), _react.default.createElement("h3", null, "An experiment in using wasm for geospatial operations. Learn more ", _react.default.createElement("a", {
-    href: ""
+    href: "https://github.com/stuartlynn/wasm_geo_agg"
   }, "here"))), _react.default.createElement("div", {
     className: 'points'
   }, dataset ? _react.default.createElement("div", null, _react.default.createElement(_PointMap.default, {
@@ -66427,14 +66427,6 @@ function App(props) {
     href: "https://twitter.com/stuart_lynn"
   }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
     icon: _freeBrandsSvgIcons.faTwitter,
-    size: "2x"
-  }))), _react.default.createElement("span", null, _react.default.createElement("a", {
-    tooltip: "info",
-    alt: "info",
-    target: "_blank",
-    href: ""
-  }, " ", _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-    icon: _freeSolidSvgIcons.faInfoCircle,
     size: "2x"
   }))), _react.default.createElement("span", null, _react.default.createElement("a", {
     tooltip: "author",
