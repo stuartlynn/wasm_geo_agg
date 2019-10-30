@@ -32,6 +32,12 @@ body {
   }
 }
 
+a{
+   color: #D5A583;
+   text-decoration: none;
+   font-weight: bold; 
+}
+
 button{
   background-color: #D5A583;
   color:white;
@@ -103,7 +109,21 @@ button:hover{
 
 .polygons { grid-area: polygons; }
 
-.footer { grid-area: footer; }
+.footer { grid-area: footer;
+  display:flex;
+  flex-direction: row;
+  width:30%;
+  justify-content: space-between;
+  justify-self:center;
+}
+.footer i{
+  color:white;
+  font-size:20px;
+}
+
+.footer  a {
+   color:white;
+}
 
 .aggregate{grid-area: aggregate;}
 
@@ -147,6 +167,7 @@ button:hover{
   flex-direction: column;
   height:350px;
   justify-content: space-between;
+  align-items:center;
 }
 
 .action-buttons button{
