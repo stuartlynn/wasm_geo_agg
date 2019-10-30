@@ -100,7 +100,7 @@ function App(props) {
 
       <div className={'header'}>
         <h1>Wasm Geo Aggregator!</h1>
-        <h3>An experiment in using wasm for geospatial operations. Learn more <a href=''>here</a></h3>
+        <h3>An experiment in using wasm for geospatial operations. Learn more <a href='https://github.com/stuartlynn/wasm_geo_agg'>here</a></h3>
       </div>
 
       <div className={'points'}>
@@ -148,7 +148,6 @@ function App(props) {
       <div className={'footer'}>
         <span><a tooltip='code' alt='code' target="_blank" href='https://github.com/stuartlynn/wasm_geo_agg'><FontAwesomeIcon icon={faGithub} size="2x" /></a></span>
         <span><a tooltip='twitter' alt='twitter' target="_blank" href='https://twitter.com/stuart_lynn'><FontAwesomeIcon icon={faTwitter} size="2x" /></a></span>
-        <span><a tooltip='info' alt='info' target="_blank" href=""> <FontAwesomeIcon icon={faInfoCircle} size="2x" /></a></span>
         <span><a tooltip='author' alt='author' target="_blank" href='http://stuartlynn.me/'><FontAwesomeIcon icon={faUser} size="2x" /></a></span>
       </div>
     </div>
