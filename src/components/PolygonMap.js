@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -36,18 +36,31 @@ export default function PolygonMap({ dataset, bounds, counts, onZoomIn, columns 
         )
     }, [dataset, bounds, counts, selectedColumn])
 
+    const canvasEl = useRef(null)
+
+
     const zoomIn = e => {
-        const x = (e.clientX * (bounds[2] - bounds[0])) / canvasWidth + bounds[0];
-        const y = (e.clientY * (bounds[3] - bounds[1])) / canvasHeight + bounds[1];
-        const xrange = (bounds[2] - bounds[0]) * 0.75;
-        const yrange = (bounds[3] - bounds[1]) * 0.75;
+
+        console.log(canvasEl.current)
+        const xPc = (e.pageX - canvasEl.current.offsetLeft) / canvasWidth;
+        const yPc = (e.pageY - canvasEl.current.offsetTop) / canvasHeight;
+
+        const xrange = (bounds[2] - bounds[0]);
+        const yrange = (bounds[3] - bounds[1]);
+
+
+        const xCenter = (xPc * xrange) + bounds[0];
+        const yCenter = bounds[3] - (yPc * yrange);
+
+        console.log('new x ', xPc, bounds[0], xCenter, bounds[2])
+        console.log('new y ', yPc, bounds[1], yCenter, bounds[3])
 
         if (onZoomIn) {
             onZoomIn([
-                x - xrange / 2.0,
-                y + yrange / 2.0,
-                x + xrange / 2.0,
-                y - yrange / 2.0,
+                xCenter - xrange * 0.75 / 2.0,
+                yCenter - yrange * 0.75 / 2.0,
+                xCenter + xrange * 0.75 / 2.0,
+                yCenter + yrange * 0.75 / 2.0,
             ]);
         }
     };
@@ -84,6 +97,7 @@ export default function PolygonMap({ dataset, bounds, counts, onZoomIn, columns 
                 }
             </div>
             <canvas
+                ref={ref => canvasEl.current = ref}
                 id="poly_canvas"
                 width={1000}
                 height={1000}

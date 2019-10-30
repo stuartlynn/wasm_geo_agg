@@ -28,8 +28,9 @@ function App(props) {
   const [columnsToAggregate, setColumnsToAggregate] = useState([])
   const [bounds, setBounds] = useState(startBounds);
 
-  const reset = () => {
-    setBounds(startBounds);
+  const reset = (e) => {
+    e.preventDefault();
+    setBounds([dataset.lng_min, dataset.lat_min, dataset.lng_max, dataset.lat_max]);
   };
 
   const pointDatasetLoaded = ({ dataset, columns }) => {
@@ -100,6 +101,7 @@ function App(props) {
         {dataset ?
           <div>
             <PointMap onZoomIn={boundsChanged} dataset={dataset} bounds={bounds} />
+            <p>Click map to zoom. <a style={{ color: '#D5A583', textDecoration: 'none' }} href='' onClick={reset}>Reset view</a></p>
           </div>
           :
           <FileLoader onLoaded={(dataset, columns) => { pointDatasetLoaded(dataset, columns) }} />
@@ -110,6 +112,7 @@ function App(props) {
         {polyDataset ?
           <div>
             <PolygonMap columns={columnsToAggregate} onZoomIn={boundsChanged} dataset={polyDataset} bounds={bounds} counts={blockAggs} />
+            <p>Click map to zoom. <a style={{ color: '#D5A583', textDecoration: 'none' }} href='' onClick={reset}>Reset view</a></p>
           </div>
           :
           <GeoJsonLoader onLoaded={(dataset => setPolyDataset(dataset))} />
@@ -136,7 +139,10 @@ function App(props) {
       </div>
 
       <div className={'footer'}>
-        <p></p>
+        <span>Code</span>
+        <span>Twitter</span>
+        <span>About</span>
+        <span>Me (Stuart Lynn)</span>
       </div>
     </div>
   );
