@@ -51,7 +51,7 @@ export default function PointMap({ onZoomIn, dataset, bounds }) {
 
     return (
         <React.Fragment>
-            <h2>{dataset.no_rows.toLocaleString('en')} Rows</h2>
+            <h2>{dataset.no_rows.toLocaleString('en')} points</h2>
             <canvas
                 ref={(ref) => canvasEl.current = ref}
                 id="point_canvas"
