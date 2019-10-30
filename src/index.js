@@ -99,7 +99,7 @@ function App(props) {
     <div className={'app-layout'}>
 
       <div className={'header'}>
-        <h1>Fast Agg</h1>
+        <h1>Wasm Geo Aggregator!</h1>
         <h3>An experiment in using wasm for geospatial operations. Learn more <a href=''>here</a></h3>
       </div>
 
