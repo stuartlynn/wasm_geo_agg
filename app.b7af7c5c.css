@@ -24,6 +24,11 @@ body {
   body h1, body h2, body h3, body h4 {
     font-family: 'Lato', sans-serif; }
 
+a {
+  color: #D5A583;
+  text-decoration: none;
+  font-weight: bold; }
+
 button {
   background-color: #D5A583;
   color: white;
@@ -94,7 +99,16 @@ button:hover {
   grid-area: footer;
   display: flex;
   flex-direction: row;
-  justify-content: space-between; }
+  width: 30%;
+  justify-content: space-between;
+  justify-self: center; }
+
+.footer i {
+  color: white;
+  font-size: 20px; }
+
+.footer a {
+  color: white; }
 
 .aggregate {
   grid-area: aggregate; }
@@ -134,7 +148,8 @@ button:hover {
   display: flex;
   flex-direction: column;
   height: 350px;
-  justify-content: space-between; }
+  justify-content: space-between;
+  align-items: center; }
 
 .action-buttons button {
   width: 80%; }
