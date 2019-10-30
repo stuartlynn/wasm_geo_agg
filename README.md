@@ -1,6 +1,8 @@
 # Wasm Geo Agg
 
-tl;dr : This is a proof of concept of performing complex spatial operations ( point in polygon aggregation ) in the browser using WASM. On my laptop I can aggregate 13 million points to about 38,000 polygons in 21 seconds ( results may vary, either faster or slower, depending on the hardware you use).
+*tl;dr*: This is a proof of concept of performing complex spatial operations ( point in polygon aggregation ) in the browser using WASM. On my laptop I can aggregate 13 million points to about 38,000 polygons in 21 seconds ( results may vary, either faster or slower, depending on the hardware you use).
+
+Try it live here: https://stuartlynn.github.io/wasm_geo_agg/
 
 ![screenshot](https://github.com/stuartlynn/wasm_geo_agg/blob/master/screenshots/TaxiAggregationpng.png?raw=true)
 
@@ -56,5 +58,13 @@ Let me know in the issues if you have problems getting it running
 ## Cool! I am sold on the future of browser delivered natively run geospatial tools, how can I help?
 
 Pull requests and issues are more than welcome to this code. You can also ping me on twitter if your interested in thinking this kind of approach through more generally.
+
+
+## Code structure 
+
+The code is split into two main directories:
+
+- _src_: Contains the javascript code which is written in React. This drives the UI and calls out to the WASM functions through wasm-bindgen. 
+- _wasm_: Contains the Rust code that compiles to WebAssembly that does the heavy lifting. 
 
 
