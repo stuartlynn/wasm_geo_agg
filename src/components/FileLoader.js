@@ -143,7 +143,6 @@ export default function FileLoader({ type, onLoaded }) {
             }
             {phase == "loading" &&
                 <div className={'point-loading'}>
-                    <h2>Loading</h2>
                     <p>{file.name} {(file.size / 1024 / 1024).toPrecision(5)}Mb </p>
                     <ProgressBar style={{ width: '60%' }} total={100.0} value={loadPercent} />
                 </div>
