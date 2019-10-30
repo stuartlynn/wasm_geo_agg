@@ -83,7 +83,7 @@ Also just think how much faster better this can be when someone more competent a
 
 Let me know in the issues if you have problems getting it running
 
-## Cool! I am sold on the future of browser delivered natively run geospatial tools, how can I help?
+## Cool! I am sold on the future of browser delivered, natively run, geospatial tools, how can I help?
 
 Pull requests and issues are more than welcome to this code. You can also ping me on twitter if your interested in thinking this kind of approach through more generally.
 
