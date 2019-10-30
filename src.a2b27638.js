@@ -66370,7 +66370,7 @@ function App(props) {
     className: 'app-layout'
   }, _react.default.createElement("div", {
     className: 'header'
-  }, _react.default.createElement("h1", null, "Fast Agg"), _react.default.createElement("h3", null, "An experiment in using wasm for geospatial operations. Learn more ", _react.default.createElement("a", {
+  }, _react.default.createElement("h1", null, "Wasm Geo Aggregator!"), _react.default.createElement("h3", null, "An experiment in using wasm for geospatial operations. Learn more ", _react.default.createElement("a", {
     href: ""
   }, "here"))), _react.default.createElement("div", {
     className: 'points'
@@ -66478,7 +66478,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40459" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42839" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
