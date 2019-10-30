@@ -46,8 +46,8 @@ impl PolygonDataset {
         }
     }
 
+    // Assign data to a column
     pub fn assign(&mut self, colName: String, values: JsValue) {
-        // let value_dict: HashMap<String, f32> = serde_wasm_bindgen::from_value(values).unwrap();
         let value_dict: HashMap<String, f32> = match serde_wasm_bindgen::from_value(values) {
             Ok(val) => val,
             Err(err) => {
@@ -58,6 +58,7 @@ impl PolygonDataset {
         self.externProperties.insert(colName, value_dict);
     }
 
+    // Move this into shader.rs at some point
     pub fn display_with_counts(
         &self,
         canvasID: String,
@@ -157,10 +158,6 @@ impl PolygonDataset {
 
     pub fn export_geo_json(&self) -> String {
         let mut features: Vec<Feature> = Vec::new();
-
-        // let externProperties: Vec<Map<String, serde_json::Value>> =
-        //     match serde_wasm_bindgen::from_value(properties).unwrap
-
         for index in 0..self.objects.len() {
             match &self.objects[index] {
                 Geometry::MultiPolygon(poly) => {
@@ -175,8 +172,6 @@ impl PolygonDataset {
                         };
                         oldProperties.insert(col.to_string(), serde_json::to_value(val).unwrap());
                     }
-                    // oldProperties
-                    // .insert(String::from("count"), serde_json::to_value(value).unwrap());
                     let feature = Feature {
                         bbox: None,
                         geometry: Some(geom_json),
