@@ -11,6 +11,27 @@ Try it live here: https://stuartlynn.github.io/wasm_geo_agg/
 Wasm Geo Agg is a proof of concept to explore performing complex geospatial operations in the browser using [Rust](https://www.rust-lang.org/) and [WebAssembly](webassembly). As an initial test, we are focusing on point in polygon operations. Simply load in a CSV file 
 with points and a GeoJSON file with polygons then click aggregate. 
 
+## Give me some datasets to try! 
+
+If you dont happen to have a bunch of geospatial datasets hanging around your computer here are a few suggestions of things to try 
+
+### New York Street Tree Census 
+
+- Point data: [Street trees](https://data.cityofnewyork.us/api/views/5rq2-4hqu/rows.csv?accessType=DOWNLOAD)
+- Polygon data: [Census Blocks](https://data.cityofnewyork.us/api/geospatial/v2h8-6mxf?method=export&format=GeoJSON)
+
+### New York City Taxi Pickups 
+
+- Point data: [Taxi data for 2011 - 08](https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2011-08.csv)
+- Polygon data: [Census Blocks](https://data.cityofnewyork.us/api/geospatial/v2h8-6mxf?method=export&format=GeoJSON)
+
+### Chicago 311 data 
+
+- Point data: [311 complaints](https://data.cityofchicago.org/api/views/v6vf-nfxy/rows.csv?accessType=DOWNLOAD&bom=true&format=true&delimiter=%3B)
+- Polgon data: [Census Blocks](https://data.cityofchicago.org/api/geospatial/mfzt-js4n?method=export&format=GeoJSON)
+
+Suggest others in an issue and I will be happy to add them!
+
 ## Why bother doing this? 
 
 Currently, if you want to process geospatial data you can either 
